@@ -32,8 +32,13 @@
         .menu-link { font-size: 0.9rem; font-weight: 600; text-decoration: underline; }
 
         /* 4. TOOL STYLES */
-        .breadcrumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+        .breadcrumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
         
+        /* HERO TEXT */
+        .tool-header { margin-bottom: 2rem; }
+        h1 { margin: 0 0 0.5rem 0; font-size: 2.2rem; letter-spacing: -1px; line-height: 1.1; }
+        .tool-description { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0; }
+
         .tool-wrapper {
             border: 2px solid var(--accent);
             padding: 1.5rem;
@@ -43,8 +48,6 @@
         }
         
         @media (max-width: 480px) { .tool-wrapper { padding: 1rem; } }
-
-        h1 { margin: 0 0 1.5rem 0; font-size: 1.8rem; letter-spacing: -0.5px; }
 
         /* GRID FOR INPUTS */
         .input-grid {
@@ -143,9 +146,15 @@
             <a href="/">Home</a> <span>/</span> <a href="/categories/construction-materials">Construction</a>
         </nav>
 
-        <div class="tool-wrapper">
+        <div class="tool-header">
             <h1>Asphalt Calculator</h1>
+            <p class="tool-description">
+                Calculate the exact amount of hot mix asphalt and sub-base gravel needed for your project. Account for compaction, waste, and labor costs instantly.
+            </p>
+        </div>
 
+        <div class="tool-wrapper">
+            
             <div class="input-grid">
                 <div>
                     <label for="length">Length</label>
@@ -155,6 +164,8 @@
                             <option value="ft">Feet</option>
                             <option value="m">Meters</option>
                             <option value="yd">Yards</option>
+                            <option value="in">Inches</option>
+                            <option value="cm">CM</option>
                         </select>
                     </div>
                 </div>
@@ -166,6 +177,8 @@
                             <option value="ft">Feet</option>
                             <option value="m">Meters</option>
                             <option value="yd">Yards</option>
+                            <option value="in">Inches</option>
+                            <option value="cm">CM</option>
                         </select>
                     </div>
                 </div>
@@ -179,6 +192,8 @@
                         <select id="depthUnit" aria-label="Unit for Thickness">
                             <option value="in">Inches</option>
                             <option value="cm">CM</option>
+                            <option value="ft">Feet</option>
+                            <option value="m">Meters</option>
                         </select>
                     </div>
                 </div>
