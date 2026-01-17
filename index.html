@@ -1,118 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CalcsHub</title>
-<meta name="description" content="Fast, accurate online calculators. Zero ads.">
-<style>
-/* High Contrast & Performance Variables */
-:root{--p:#0056b3;--t:#111;--m:#444;--b:#fff;--a:#f8f9fa;--d:#ddd;--w:900px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;background:var(--b);color:var(--t);line-height:1.5;display:flex;flex-direction:column;min-height:100vh}
-a{text-decoration:none;color:inherit;transition:.2s}
-.wrap{max-width:var(--w);margin:0 auto;padding:0 1.25rem;width:100%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcsHub</title>
+    <meta name="description" content="Fast, accurate online calculators. Zero ads, zero clutter.">
+    
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary: #0056b3;     /* Main blue */
+            --text-main: #111111;   /* Black text */
+            --text-muted: #444444;  /* Dark gray (WCAG compliant) */
+            --bg-body: #ffffff;     /* White background */
+            --bg-alt: #f8f9fa;      /* Light gray background */
+            --border: #dddddd;      /* Border color */
+            --width: 900px;         /* Container max-width */
+        }
 
-/* Header */
-header{border-bottom:1px solid var(--d);padding:1rem 0}
-.head-in{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.5rem;letter-spacing:-1px}
-.logo span{color:var(--p)}
-nav a{color:var(--m);font-size:.9rem;font-weight:600} /* Bold added for a11y */
-nav a:hover{color:var(--p)}
+        /* --- RESET & PERFORMANCE DEFAULTS --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Hero */
-.hero{padding:3rem 0;text-align:center}
-.hero h1{font-size:2.2rem;font-weight:800;letter-spacing:-1px;margin-bottom:.5rem}
-.hero p{color:var(--m);max-width:500px;margin:0 auto}
+        html {
+            /* Prioritize speed over fancy font rendering */
+            text-rendering: optimizeSpeed;
+        }
 
-/* Categories Grid */
-.cats{padding:2rem 0;background:var(--a);border-top:1px solid var(--d)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
-.card{background:var(--b);border:1px solid var(--d);border-radius:6px;padding:1.25rem;display:block}
-.card:hover{border-color:#777}
-/* Fixed Heading Order: h3 -> h2 */
-.card h2{font-size:1.15rem;font-weight:700;margin-bottom:.25rem;color:var(--t)} 
-.card p{color:var(--m);font-size:.9rem;margin-bottom:.75rem} /* Darker text */
-.go{color:var(--p);font-size:.85rem;font-weight:700}
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            /* Note: We removed 'display: flex' on body to allow faster progressive rendering */
+        }
 
-/* Content Text */
-.txt{padding:2rem 0;border-top:1px solid var(--d)}
-.txt h2{font-size:1.25rem;margin-bottom:.5rem}
-.txt p{color:var(--m);font-size:.95rem;margin-bottom:1rem}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-/* Footer (Contrast Fixed) */
-footer{background:var(--a);border-top:1px solid var(--d);padding:2rem 0;margin-top:auto;text-align:center;font-size:.9rem;color:var(--m)}
-.f-nav{margin-bottom:1rem}
-.f-nav a{margin:0 .6rem;color:var(--m);font-weight:500}
-.f-nav a:hover{color:var(--t);text-decoration:underline}
+        /* --- LAYOUT UTILITY --- */
+        .wrap {
+            max-width: var(--width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+            width: 100%;
+        }
 
-@media(max-width:600px){.hero h1{font-size:1.8rem}}
-</style>
+        /* --- HEADER --- */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            background-color: var(--bg-body);
+        }
+
+        .head-in {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            /* Performance: 'contain' tells browser this area doesn't affect outside layout */
+            contain: content; 
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- CATEGORIES SECTION --- */
+        .cats {
+            padding: 2rem 0;
+            background-color: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            /* Performance: 'auto' skips rendering this section if it's off-screen */
+            content-visibility: auto; 
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        /* --- CATEGORY CARDS --- */
+        .card {
+            display: block;
+            background-color: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.25rem;
+            /* Performance: Optimizes painting of individual cards */
+            contain: paint; 
+        }
+
+        .card:hover {
+            border-color: #777;
+        }
+
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .go {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* --- TEXT CONTENT SECTION --- */
+        .txt {
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            content-visibility: auto;
+        }
+
+        .txt h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .txt p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            content-visibility: auto;
+        }
+
+        .f-nav {
+            margin-bottom: 1rem;
+        }
+
+        .f-nav a {
+            margin: 0 0.6rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .f-nav a:hover {
+            color: var(--text-main);
+            text-decoration: underline;
+        }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            /* Switch to block layout on mobile for faster rendering than grid */
+            .grid {
+                display: block;
+            }
+
+            .card {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-<div class="wrap head-in">
-<a href="/" class="logo">CalcsHub<span>.</span></a>
-<nav><a href="#about">About</a></nav>
-</div>
-</header>
+    <header>
+        <div class="wrap head-in">
+            <a href="/" class="logo">CalcsHub<span>.</span></a>
+            <nav>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
 
-<main>
-<section class="hero">
-<div class="wrap">
-<h1>CalcsHub</h1>
-<p>Fast, accurate, distraction-free tools.</p>
-</div>
-</section>
+    <main>
+        <section class="hero">
+            <div class="wrap">
+                <h1>CalcsHub</h1>
+                <p>Fast, accurate, distraction-free tools.</p>
+            </div>
+        </section>
 
-<section class="cats">
-<div class="wrap grid">
-<a href="/categories/education-academics.html" class="card">
-<h2>🎓 Education</h2>
-<p>CGPA, Grades, Long Division.</p>
-<span class="go">6 Tools &rarr;</span>
-</a>
-<a href="/categories/salary-finance.html" class="card">
-<h2>💼 Finance</h2>
-<p>Salary Hike, Mortgage, Interest.</p>
-<span class="go">4 Tools &rarr;</span>
-</a>
-<a href="/categories/construction-materials.html" class="card">
-<h2>🏗 Construction</h2>
-<p>Asphalt, Gravel, Board Foot.</p>
-<span class="go">5 Tools &rarr;</span>
-</a>
-<a href="/categories/general-lifestyle.html" class="card">
-<h2>🧠 General</h2>
-<p>Age, Birthday, Stats.</p>
-<span class="go">3 Tools &rarr;</span>
-</a>
-</div>
-</section>
+        <section class="cats">
+            <div class="wrap grid">
+                
+                <a href="/categories/education-academics.html" class="card">
+                    <h2>🎓 Education</h2>
+                    <p>CGPA, Grades, Long Division.</p>
+                    <span class="go">6 Tools &rarr;</span>
+                </a>
 
-<article id="about" class="txt">
-<div class="wrap">
-<h2>Why Speed Matters</h2>
-<p>CalcsHub is built on a zero-dependency architecture. Whether on 3G or desktop, our tools load instantly.</p>
-<h2>Methodology</h2>
-<p>We use native browser calculations and no external frameworks to ensure immediate results.</p>
-</div>
-</article>
-</main>
+                <a href="/categories/salary-finance.html" class="card">
+                    <h2>💼 Finance</h2>
+                    <p>Salary Hike, Mortgage, Interest.</p>
+                    <span class="go">4 Tools &rarr;</span>
+                </a>
 
-<footer>
-<div class="wrap">
-<nav class="f-nav">
-<a href="/about.html">About</a>
-<a href="/contact.html">Contact</a>
-<a href="/privacy.html">Privacy</a>
-<a href="/disclaimer.html">Disclaimer</a>
-</nav>
-<p>&copy; 2024 CalcsHub.</p>
-</div>
-</footer>
+                <a href="/categories/construction-materials.html" class="card">
+                    <h2>🏗 Construction</h2>
+                    <p>Asphalt, Gravel, Board Foot.</p>
+                    <span class="go">5 Tools &rarr;</span>
+                </a>
+
+                <a href="/categories/general-lifestyle.html" class="card">
+                    <h2>🧠 General</h2>
+                    <p>Age, Birthday, Stats.</p>
+                    <span class="go">3 Tools &rarr;</span>
+                </a>
+
+            </div>
+        </section>
+
+        <article id="about" class="txt">
+            <div class="wrap">
+                <h2>Why Speed Matters</h2>
+                <p>CalcsHub is built on a zero-dependency architecture. Whether on 3G or desktop, our tools load instantly.</p>
+                
+                <h2>Methodology</h2>
+                <p>We use native browser calculations and no external frameworks to ensure immediate results.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <nav class="f-nav">
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="/disclaimer.html">Disclaimer</a>
+            </nav>
+            <p>&copy; 2024 CalcsHub.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
