@@ -1,1 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asphalt Calculator - Estimate Hot Mix Tonnage | CalcsHub</title>
+    <meta name="description" content="Calculate asphalt tonnage, coverage area, and cost instantly. Includes factors for compaction and sub-base gravel. Free and mobile-friendly.">
+    <link rel="canonical" href="https://calcshub.com/asphalt-calculator/">
+    
+    <style>
+        /* 1. RESET & VARIABLES */
+        :root { --bg:#fff; --text:#111; --muted:#666; --border:#e5e5e5; --accent:#000; --highlight:#f4f4f4; }
+        * { box-sizing: border-box; }
+        
+        /* 2. LAYOUT */
+        body { 
+            margin: 0; font-family: system-ui, -apple-system, sans-serif; 
+            background: var(--bg); color: var(--text); line-height: 1.5;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+        main { flex: 1; width: 100%; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+        a { text-decoration: none; color: inherit; }
 
+        /* 3. HEADER */
+        header { padding: 1.2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--accent); }
+        .menu-link { font-size: 0.9rem; font-weight: 600; text-decoration: underline; }
+
+        /* 4. TOOL STYLES */
+        .breadcrumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+        
+        .tool-wrapper {
+            border: 2px solid var(--accent);
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            background: #fff;
+        }
+
+        h1 { margin: 0 0 1.5rem 0; font-size: 1.8rem; letter-spacing: -0.5px; }
+
+        /* GRID FOR INPUTS */
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 600px) { .input-grid { grid-template-columns: 1fr; } }
+
+        label { display: block; font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem; }
+
+        /* JOINED INPUTS (Value + Unit) */
+        .input-group { display: flex; }
+        
+        .input-group input {
+            flex: 2;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 1px solid var(--accent);
+            border-right: none; /* Merge with select */
+            border-radius: 0;
+            appearance: none;
+        }
+
+        .input-group select {
+            flex: 1;
+            padding: 12px;
+            font-size: 1rem;
+            background: #eee;
+            border: 1px solid var(--accent);
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* STANDARD SELECT */
+        .full-select {
+            width: 100%; padding: 12px; font-size: 1rem;
+            border: 1px solid var(--accent); border-radius: 0;
+            background: #fff; margin-bottom: 1rem;
+        }
+
+        /* ADVANCED TOGGLE */
+        .advanced-toggle {
+            color: var(--muted); text-decoration: underline; cursor: pointer;
+            font-size: 0.9rem; margin: 10px 0 20px 0; display: inline-block;
+        }
+        
+        .advanced-area { display: none; padding: 1rem; background: var(--highlight); margin-bottom: 1.5rem; border: 1px dashed #ccc; }
+        .advanced-area.show { display: block; }
+
+        /* BUTTONS */
+        .btn-calc {
+            width: 100%; background: var(--accent); color: #fff;
+            border: none; padding: 16px; font-size: 1.1rem; font-weight: 700;
+            cursor: pointer; text-transform: uppercase; margin-top: 10px;
+        }
+        .btn-calc:hover { opacity: 0.9; }
+
+        .btn-clear {
+            background: transparent; border: none; color: var(--muted);
+            text-decoration: underline; cursor: pointer; margin-top: 10px; font-size: 0.9rem;
+        }
+
+        /* RESULT BOX */
+        .result-box {
+            background: var(--highlight);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--accent);
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .result-box.visible { display: block; }
+
+        .result-value { font-size: 2.5rem; font-weight: 800; line-height: 1.2; }
+        .result-label { text-transform: uppercase; font-size: 0.85rem; color: var(--muted); letter-spacing: 1px; }
+        
+        .sub-result {
+            display: flex; justify-content: space-around;
+            margin-top: 1.5rem; padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+        }
+        .sub-item strong { display: block; font-size: 1.2rem; }
+        .sub-item span { font-size: 0.8rem; color: var(--muted); }
+
+        /* 5. CONTENT AREA */
+        .content-area { margin-top: 4rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+        .content-area h2 { font-size: 1.5rem; margin-top: 0; }
+        .content-area p { color: #444; margin-bottom: 1rem; }
+
+        /* 6. FOOTER */
+        footer { border-top: 1px solid var(--border); padding: 3rem 0; background: #f9f9f9; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 5rem; }
+        .footer-links a { margin: 0 10px; color: var(--text); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="/" class="logo">CalcsHub.</a>
+            <a href="#footer" class="menu-link">Menu</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <nav class="breadcrumbs">
+            <a href="/">Home</a> <span>/</span> <a href="/categories/construction-materials">Construction</a>
+        </nav>
+
+        <div class="tool-wrapper">
+            <h1>Asphalt Calculator</h1>
+
+            <div class="input-grid">
+                <div>
+                    <label for="length">Length</label>
+                    <div class="input-group">
+                        <input type="number" id="length" placeholder="0" inputmode="decimal">
+                        <select id="lengthUnit"><option value="ft">Feet</option><option value="m">Meters</option><option value="yd">Yards</option></select>
+                    </div>
+                </div>
+                <div>
+                    <label for="width">Width</label>
+                    <div class="input-group">
+                        <input type="number" id="width" placeholder="0" inputmode="decimal">
+                        <select id="widthUnit"><option value="ft">Feet</option><option value="m">Meters</option><option value="yd">Yards</option></select>
+                    </div>
+                </div>
+            </div>
+
+            <label for="depth">Asphalt Thickness</label>
+            <div class="input-group" style="margin-bottom: 1rem;">
+                <input type="number" id="depth" placeholder="e.g. 3" inputmode="decimal">
+                <select id="depthUnit"><option value="in">Inches</option><option value="cm">CM</option></select>
+            </div>
+
+            <div class="advanced-toggle" id="advToggle">Show Advanced Settings (Cost & Density) ▼</div>
+
+            <div class="advanced-area" id="advSection">
+                <div class="input-grid">
+                    <div>
+                        <label>Asphalt Cost ($/Ton)</label>
+                        <div class="input-group">
+                            <input type="number" id="price" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Waste Factor</label>
+                        <select id="waste" class="full-select" style="margin:0; border-left:1px solid #000;">
+                            <option value="0.05">+5% (Standard)</option>
+                            <option value="0.10">+10% (Irregular)</option>
+                            <option value="0">0% (Exact)</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top:1rem;">
+                    <label>Density (lbs/cu ft)</label>
+                    <input type="number" id="density" value="145" class="full-select" style="background:#fff;">
+                </div>
+            </div>
+
+            <button class="btn-calc" id="calcBtn">Calculate Tonnage</button>
+            <div style="text-align:center;"><button class="btn-clear" id="clearBtn">Reset</button></div>
+
+            <div class="result-box" id="resultBox">
+                <div class="result-label">Asphalt Required</div>
+                <div class="result-value" id="resTons">0.00</div>
+                <div class="result-label" style="margin-bottom: 1rem;">TONS</div>
+
+                <div id="costResult" style="display:none; color: #10b981; font-weight:700; font-size:1.2rem; margin-bottom:1rem;">
+                    Est. Cost: $<span id="resCost">0.00</span>
+                </div>
+
+                <div class="sub-result">
+                    <div class="sub-item">
+                        <strong id="resArea">0</strong>
+                        <span>Area (Sq Ft)</span>
+                    </div>
+                    <div class="sub-item">
+                        <strong id="resVol">0</strong>
+                        <span>Volume (Cu Ft)</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <article class="content-area">
+            <h2>How to estimate asphalt</h2>
+            <p>Calculating the amount of asphalt needed requires converting the volume of your driveway or parking lot into weight (tons). Asphalt is typically sold by the ton but installed by the cubic foot.</p>
+            
+            <h3>The Formula</h3>
+            <p>We use the standard industry density of <strong>145 lbs per cubic foot</strong>. The basic formula is:</p>
+            <p style="background:#eee; padding:10px; font-family:monospace;">(Length × Width × Depth) × 145 lbs = Total Weight</p>
+            <p>Our calculator also adds a standard compaction factor (asphalt shrinks when rolled) and a waste margin to ensure you don't run short.</p>
+        </article>
+
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/disclaimer">Disclaimer</a>
+            </div>
+            <p>&copy; 2026 CalcsHub. Use for reference only.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js" defer></script>
+
+</body>
+</html>
