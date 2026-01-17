@@ -1,1 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CalcsHub - Simple, free, and fast online calculators for construction, education, health, and finance. No ads, no lag.">
+    <title>CalcsHub - Simple Online Tools</title>
 
+    <style>
+        /* --- 2. ZERO-BLOAT CSS ENGINE --- */
+        :root {
+            /* Color Palette - Minimalist & High Contrast */
+            --bg-body: #ffffff;
+            --bg-card: #f9f9f9;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border: #e0e0e0;
+            --accent: #000000; /* Black accent for professional look */
+        }
+
+        /* Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            /* System Font Stack: Loads in 0ms using device fonts */
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Keeps footer at bottom */
+        }
+
+        /* Layout Container */
+        .container {
+            width: 100%;
+            max-width: 900px; /* Optimal reading width */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800; /* Extra Bold */
+            text-decoration: none;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 10px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- CATEGORY GRID (Mobile First) --- */
+        .grid {
+            display: grid;
+            /* AUTO-FIT: Automatically stacks 1 column on phone, 2-3 on desktop */
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: border-color 0.2s, transform 0.1s;
+        }
+
+        .card:hover {
+            border-color: #999;
+            transform: translateY(-2px); /* Tiny lift effect */
+            background: #fff;
+        }
+
+        .icon {
+            font-size: 2.5rem; /* Emoji Icon size */
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .card span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-links { margin-top: 10px; }
+        .footer-links a { margin: 0 10px; color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="/" class="logo">CalcsHub.</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="hero">
+            <h1>Tools for everything.</h1>
+            <p>Fast, simple, and free calculators for your daily needs.</p>
+        </div>
+
+        <div class="grid">
+            
+            <a href="/construction/" class="card">
+                <span class="icon">🏗️</span>
+                <h2>Construction</h2>
+                <span>Asphalt, Concrete, Bricks</span>
+            </a>
+
+            <a href="/education/" class="card">
+                <span class="icon">🎓</span>
+                <h2>Education</h2>
+                <span>Math, GPA, Conversions</span>
+            </a>
+
+            <a href="/finance/" class="card">
+                <span class="icon">💰</span>
+                <h2>Finance</h2>
+                <span>Loans, Savings, Tax</span>
+            </a>
+
+            <a href="/health/" class="card">
+                <span class="icon">❤️</span>
+                <h2>Health</h2>
+                <span>BMI, BMR, Calories</span>
+            </a>
+
+            <a href="/time/" class="card">
+                <span class="icon">⏳</span>
+                <h2>Time & Date</h2>
+                <span>Age, Timer, Stopwatch</span>
+            </a>
+
+            <a href="/tech/" class="card">
+                <span class="icon">⚡</span>
+                <h2>Tech & Web</h2>
+                <span>Bandwidth, Pixels, Binary</span>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 CalcsHub</p>
+            <div class="footer-links">
+                <a href="/about.html">About</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
