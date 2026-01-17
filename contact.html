@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CalcsHub</title>
+    <meta name="description" content="Get in touch with the CalcsHub team. Report bugs, suggest new calculators, or say hello.">
+    <link rel="canonical" href="https://calcshub.com/contact">
+    
+    <style>
+        /* 1. RESET & VARIABLES */
+        :root { --bg:#fff; --text:#111; --muted:#666; --border:#e5e5e5; --accent:#000; --highlight:#f4f4f4; }
+        * { box-sizing: border-box; }
+        
+        /* 2. STICKY FOOTER LAYOUT */
+        body { 
+            margin: 0; 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        main { flex: 1; width: 100%; }
+        
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
 
+        /* 3. HEADER */
+        header { padding: 1.2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--accent); }
+        .menu-link { font-size: 0.9rem; font-weight: 600; text-decoration: underline; }
+        
+        /* 4. PAGE HERO */
+        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
+        p { margin-bottom: 2rem; color: #333; font-size: 1rem; }
+
+        /* 5. FORM STYLES (High Contrast) */
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
+            border: 1px solid #000; /* High contrast border */
+            border-radius: 0; /* Boxy look */
+            background: #fff;
+            appearance: none;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-width: 2px;
+            background-color: #fafafa;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Submit Button */
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%; /* Full width on mobile */
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        @media (min-width: 600px) {
+            button { width: auto; } /* Normal width on desktop */
+        }
+
+        /* 6. FOOTER */
+        footer { border-top: 1px solid var(--border); padding: 3rem 0; background: #f9f9f9; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 5rem; }
+        .footer-links { margin-bottom: 1.5rem; }
+        .footer-links a { margin: 0 12px; color: var(--text); font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="/" class="logo">CalcsHub.</a>
+            <a href="#footer" class="menu-link">Menu</a>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <h1>Contact Us</h1>
+        <p>Have a suggestion for a new tool or found a bug? Fill out the form below.</p>
+
+        <form action="https://formsubmit.co/YOUR_EMAIL_ADDRESS" method="POST" class="contact-form">
+            
+            <input type="text" name="_honey" style="display:none">
+
+            <input type="hidden" name="_captcha" value="false">
+
+            <input type="hidden" name="_next" value="https://calcshub.com/">
+            
+            <input type="hidden" name="_subject" value="New Contact from CalcsHub">
+
+            <div>
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="John Doe">
+            </div>
+
+            <div>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+
+            <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="I found a bug in the CGPA calculator..."></textarea>
+            </div>
+
+            <button type="submit">Send Message →</button>
+        </form>
+
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/disclaimer">Disclaimer</a>
+            </div>
+            <p>&copy; 2026 CalcsHub. Use for reference only.</p>
+        </div>
+    </footer>
+</body>
+</html>
