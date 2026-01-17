@@ -29,17 +29,14 @@
             color: var(--text-main);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            
-            /* The Fix: */
             display: flex;
             flex-direction: column;
             min-height: 100vh; 
         }
 
         main {
-            /* The Fix: Expands to fill empty space */
             flex: 1;
-            width: 100%; /* Ensures container stays centered */
+            width: 100%;
         }
 
         a { text-decoration: none; color: inherit; }
@@ -50,11 +47,14 @@
             padding: 0 1.5rem;
         }
 
-        /* 2. HEADER */
+        @media (max-width: 480px) { .container { padding: 0 1rem; } }
+
+        /* 2. HEADER DESIGN (Updated) */
         header {
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border);
             background: #fff;
+            position: relative; z-index: 10;
         }
 
         .header-inner {
@@ -63,6 +63,26 @@
             align-items: center;
         }
 
+        .header-left { display: flex; align-items: center; gap: 1rem; }
+
+        /* Hamburger Button */
+        .icon-btn {
+            background: none; border: none; cursor: pointer; padding: 5px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .burger-icon {
+            width: 24px; height: 2px; background: var(--accent); position: relative;
+        }
+        .burger-icon::before, .burger-icon::after {
+            content: ''; position: absolute; left: 0;
+            width: 24px; height: 2px; background: var(--accent);
+        }
+        .burger-icon::before { top: -7px; }
+        .burger-icon::after { top: 7px; }
+
+        /* Search Icon (SVG) */
+        .search-icon svg { width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 2; }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
@@ -70,13 +90,59 @@
             color: var(--accent);
         }
 
-        .menu-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: underline;
+        /* 3. OVERLAYS (Menu & Search) */
+        .overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 100;
+            opacity: 0; visibility: hidden; transition: opacity 0.2s;
+        }
+        .overlay.active { opacity: 1; visibility: visible; }
+
+        /* Menu Drawer */
+        .menu-drawer {
+            position: fixed; top: 0; left: 0; bottom: 0;
+            width: 280px; background: #fff; z-index: 101;
+            transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 2rem; border-right: 1px solid var(--border);
+            display: flex; flex-direction: column;
+        }
+        .overlay.active .menu-drawer { transform: translateX(0); }
+
+        .drawer-header { display: flex; justify-content: space-between; margin-bottom: 2rem; }
+        .close-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; }
+        
+        .nav-links a { 
+            display: block; padding: 12px 0; font-size: 1.1rem; 
+            font-weight: 600; border-bottom: 1px solid var(--border); 
         }
 
-        /* 3. HERO SECTION */
+        /* Search Bar Overlay */
+        .search-bar-container {
+            position: fixed; top: 0; left: 0; width: 100%; 
+            background: #fff; z-index: 101; padding: 1.5rem;
+            transform: translateY(-100%); transition: transform 0.3s;
+            border-bottom: 1px solid var(--border);
+            display: flex; gap: 1rem; align-items: center;
+        }
+        .overlay.active .search-bar-container { transform: translateY(0); }
+
+        .search-input {
+            width: 100%; padding: 12px; font-size: 1.1rem; border: none;
+            border-bottom: 2px solid var(--accent); outline: none;
+        }
+
+        /* Search Results Styling */
+        .search-results-container {
+            max-width: 800px; margin: 0 auto; padding: 1rem 1.5rem; background: #fff;
+        }
+        .search-result-item {
+            display: block; padding: 15px 0; border-bottom: 1px solid #eee;
+            font-size: 1.1rem; font-weight: 600; color: #000;
+        }
+        .search-result-item:hover { background-color: #f9f9f9; padding-left: 10px; transition: all 0.2s; }
+        .no-results { padding: 20px 0; color: #666; }
+
+        /* 4. HERO SECTION */
         .hero {
             padding: 3.5rem 0 2.5rem 0;
             text-align: center;
@@ -98,7 +164,7 @@
             margin: 0;
         }
 
-        /* 4. CATEGORY GRID */
+        /* 5. CATEGORY GRID */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -147,7 +213,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* 5. FOOTER */
+        /* 6. FOOTER */
         footer {
             border-top: 1px solid var(--border);
             padding: 3rem 0;
@@ -155,7 +221,6 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
-            /* No margin-top needed anymore because flex handles the spacing */
         }
         
         .footer-links { margin-bottom: 1.5rem; }
@@ -165,10 +230,43 @@
 </head>
 <body>
 
+    <div id="menuOverlay" class="overlay">
+        <div class="menu-drawer">
+            <div class="drawer-header">
+                <span style="font-weight:800; font-size:1.2rem;">Menu</span>
+                <button id="closeMenu" class="close-btn" aria-label="Close Menu">&times;</button>
+            </div>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/categories/construction-materials">Construction</a>
+                <a href="/categories/education-academics">Education</a>
+                <a href="/categories/salary-finance">Finance</a>
+                <a href="/categories/general-lifestyle">Lifestyle</a>
+                <a href="/contact">Contact Us</a>
+            </nav>
+        </div>
+    </div>
+
+    <div id="searchOverlay" class="overlay">
+        <div class="search-bar-container">
+            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools (e.g. Asphalt, CGPA)..." autocomplete="off">
+            <button id="closeSearch" class="close-btn" aria-label="Close Search">&times;</button>
+        </div>
+        <div id="searchResults" class="search-results-container"></div>
+    </div>
+
     <header>
         <div class="container header-inner">
-            <a href="/" class="logo">LoveU Calc.</a>
-            <a href="#footer" class="menu-link">Menu</a>
+            <div class="header-left">
+                <button id="menuBtn" class="icon-btn" aria-label="Open Menu">
+                    <div class="burger-icon"></div>
+                </button>
+                <a href="/" class="logo">LoveU Calc.</a>
+            </div>
+            
+            <button id="searchBtn" class="icon-btn search-icon" aria-label="Search">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
         </div>
     </header>
 
@@ -218,6 +316,8 @@
             <p>&copy; 2026 LoveU Calc. Use for reference only.</p>
         </div>
     </footer>
+
+    <script src="/scripts.js" defer></script>
 
 </body>
 </html>
