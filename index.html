@@ -1,105 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CalcsHub</title>
-<meta name="description" content="Fast, accurate online calculators. Zero ads.">
-<style>
-:root{--p:#0056b3;--t:#111;--m:#555;--b:#fff;--a:#f8f9fa;--d:#ddd;--w:900px}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;background:var(--b);color:var(--t);line-height:1.5;display:flex;flex-direction:column;min-height:100vh}
-a{text-decoration:none;color:inherit;transition:.2s}
-.wrap{max-width:var(--w);margin:0 auto;padding:0 1.25rem;width:100%}
-header{border-bottom:1px solid var(--d);padding:1rem 0}
-.head-in{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:1.5rem;letter-spacing:-1px}
-.logo span{color:var(--p)}
-nav a{color:var(--m);font-size:.9rem;font-weight:500}
-nav a:hover{color:var(--p)}
-.hero{padding:3rem 0;text-align:center}
-.hero h1{font-size:2.2rem;font-weight:800;letter-spacing:-1px;margin-bottom:.5rem}
-.hero p{color:var(--m);max-width:500px;margin:0 auto}
-.cats{padding:2rem 0;background:var(--a);border-top:1px solid var(--d)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
-.card{background:var(--b);border:1px solid var(--d);border-radius:6px;padding:1.25rem;display:block}
-.card:hover{border-color:#999}
-.card h3{font-size:1.1rem;font-weight:700;margin-bottom:.25rem}
-.card p{color:var(--m);font-size:.85rem;margin-bottom:.75rem}
-.go{color:var(--p);font-size:.85rem;font-weight:600}
-.txt{padding:2rem 0;border-top:1px solid var(--d)}
-.txt h2{font-size:1.25rem;margin-bottom:.5rem}
-.txt p{color:var(--m);font-size:.9rem;margin-bottom:1rem}
-footer{background:var(--a);border-top:1px solid var(--d);padding:2rem 0;margin-top:auto;text-align:center;font-size:.85rem;color:#999}
-.f-nav{margin-bottom:1rem}
-.f-nav a{margin:0 .5rem;color:var(--m)}
-.f-nav a:hover{color:var(--t);text-decoration:underline}
-@media(max-width:600px){.hero h1{font-size:1.8rem}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcHub | High-Performance Online Calculators</title>
+    <meta name="description" content="Fast, accurate online calculators for education, finance, construction, and lifestyle. Zero ads, zero clutter.">
+    
+    <style>
+        /* --- CORE PERFORMANCE CSS --- */
+        :root {
+            --primary: #0056b3;
+            --text: #111;
+            --text-muted: #555;
+            --bg: #fff;
+            --bg-alt: #f8f9fa;
+            --border: #e1e1e1;
+            --width: 900px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        .container {
+            max-width: var(--width);
+            margin: 0 auto;
+            padding: 0 1.25rem;
+            width: 100%;
+        }
+
+        /* --- HEADER (Fixed Mobile Layout) --- */
+        .site-header {
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            background: var(--bg);
+        }
+
+        .site-header .container {
+            display: flex;
+            justify-content: space-between; /* Keeps Logo left, Nav right */
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: var(--primary); }
+
+        nav a {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        nav a:hover { color: var(--primary); }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- CATEGORIES GRID --- */
+        .cat-section {
+            padding: 3rem 0;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        /* CARD DESIGN */
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.1s;
+            display: block;
+        }
+
+        .card:hover {
+            border-color: #bbb;
+            transform: translateY(-2px);
+        }
+
+        .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .btn-link { color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+
+        /* --- SEO CONTENT --- */
+        .content { padding: 3rem 0; border-top: 1px solid var(--border); }
+        .content h2 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+        .content p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .footer-nav { margin-bottom: 1rem; }
+        .footer-nav a { margin: 0 0.75rem; color: var(--text-muted); font-size: 0.85rem; }
+        .footer-nav a:hover { text-decoration: underline; color: var(--text); }
+        footer p { color: #999; font-size: 0.8rem; }
+
+        /* MOBILE TWEAKS */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            /* Force Logo and About to stay on same line */
+            .site-header .container { flex-direction: row; } 
+        }
+    </style>
 </head>
 <body>
 
-<header>
-<div class="wrap head-in">
-<a href="/" class="logo">CalcsHub<span>.</span></a>
-<nav><a href="#about">About</a></nav>
-</div>
-</header>
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">CalcHub<span>.</span></a>
+            <nav>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
 
-<main>
-<section class="hero">
-<div class="wrap">
-<h1>CalcsHub</h1>
-<p>Fast, accurate, distraction-free tools.</p>
-</div>
-</section>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>CalcHub</h1>
+                <p>The standard for high-performance calculation. Fast, accurate, and distraction-free tools for every need.</p>
+            </div>
+        </section>
 
-<section class="cats">
-<div class="wrap grid">
-<a href="/categories/education-academics.html" class="card">
-<h3>🎓 Education</h3>
-<p>CGPA, Grades, Long Division.</p>
-<span class="go">6 Tools &rarr;</span>
-</a>
-<a href="/categories/salary-finance.html" class="card">
-<h3>💼 Finance</h3>
-<p>Salary Hike, Mortgage, Interest.</p>
-<span class="go">4 Tools &rarr;</span>
-</a>
-<a href="/categories/construction-materials.html" class="card">
-<h3>🏗 Construction</h3>
-<p>Asphalt, Gravel, Board Foot.</p>
-<span class="go">5 Tools &rarr;</span>
-</a>
-<a href="/categories/general-lifestyle.html" class="card">
-<h3>🧠 General</h3>
-<p>Age, Birthday, Stats.</p>
-<span class="go">3 Tools &rarr;</span>
-</a>
-</div>
-</section>
+        <section class="cat-section">
+            <div class="container">
+                <div class="grid">
+                    
+                    <a href="/categories/education-academics.html" class="card">
+                        <h3>🎓 Education & Academics</h3>
+                        <p>CGPA, Semester Grades, Long Division, and Percentage converters.</p>
+                        <span class="btn-link">6 Calculators &rarr;</span>
+                    </a>
 
-<article id="about" class="txt">
-<div class="wrap">
-<h2>Why Speed Matters</h2>
-<p>CalcsHub is built on a zero-dependency architecture. Whether on 3G or desktop, our tools load instantly.</p>
-<h2>Methodology</h2>
-<p>We use native browser calculations and no external frameworks to ensure immediate results.</p>
-</div>
-</article>
-</main>
+                    <a href="/categories/salary-finance.html" class="card">
+                        <h3>💼 Salary & Finance</h3>
+                        <p>Salary Hike, Mortgage Payoff, Experience, and Interest tools.</p>
+                        <span class="btn-link">4 Calculators &rarr;</span>
+                    </a>
 
-<footer>
-<div class="wrap">
-<nav class="f-nav">
-<a href="/about.html">About</a>
-<a href="/contact.html">Contact</a>
-<a href="/privacy.html">Privacy</a>
-<a href="/disclaimer.html">Disclaimer</a>
-</nav>
-<p>&copy; 2024 CalcsHub.</p>
-</div>
-</footer>
+                    <a href="/categories/construction-materials.html" class="card">
+                        <h3>🏗 Construction & Materials</h3>
+                        <p>Asphalt, Gravel, Board Foot, and Cubic Yard estimators.</p>
+                        <span class="btn-link">5 Calculators &rarr;</span>
+                    </a>
+
+                    <a href="/categories/general-lifestyle.html" class="card">
+                        <h3>🧠 General & Lifestyle</h3>
+                        <p>Age Calculator, Half Birthday, and Batting Averages.</p>
+                        <span class="btn-link">3 Calculators &rarr;</span>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <article id="about" class="content">
+            <div class="container">
+                <h2>Why Speed Matters</h2>
+                <p>Most calculator websites are bloated with ads and trackers. CalcHub is built on a zero-dependency architecture. Whether you are on 3G or a desktop, our tools load instantly.</p>
+                
+                <h2>Our Methodology</h2>
+                <p>We prioritize speed and accuracy. By using native browser calculations and eliminating external frameworks, we ensure that when you click "Calculate," the result is immediate.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <nav class="footer-nav">
+                <a href="/about.html">About Us</a>
+                <a href="/contact.html">Contact Us</a>
+                <a href="/privacy.html">Privacy Policy</a>
+                <a href="/disclaimer.html">Disclaimer</a>
+            </nav>
+            <p>&copy; 2024 CalcHub. Built for speed.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
