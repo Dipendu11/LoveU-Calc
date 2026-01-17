@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance & Salary Calculators - CalcsHub</title>
+    <meta name="description" content="Free finance tools: Salary Hike, Mortgage Payoff, and Interest calculators.">
+    <link rel="canonical" href="https://calcshub.com/categories/salary-finance">
+    
+    <style>
+        /* 1. RESET & VARIABLES */
+        :root { --bg:#fff; --text:#111; --muted:#666; --border:#e5e5e5; --accent:#000; --highlight:#f4f4f4; }
+        * { box-sizing: border-box; }
+        
+        /* 2. STICKY FOOTER LAYOUT */
+        body { 
+            margin: 0; 
+            font-family: system-ui, -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Forces body to fill screen */
+        }
+        
+        main { flex: 1; width: 100%; } /* Pushes footer down */
+        
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
 
+        /* 3. HEADER */
+        header { padding: 1.2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; background: #fff; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--accent); }
+        .menu-link { font-size: 0.9rem; font-weight: 600; text-decoration: underline; }
+        
+        /* 4. CONTENT STYLES */
+        .breadcrumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+        .page-hero { padding: 1rem 0 2rem 0; border-bottom: 2px solid var(--accent); margin-bottom: 1rem; }
+        .page-hero h1 { font-size: 2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+
+        .tool-list { display: flex; flex-direction: column; }
+        .tool-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 1.1rem; transition: background 0.1s; }
+        .tool-row:hover { padding-left: 10px; background-color: var(--highlight); }
+        .arrow { color: #999; font-weight: normal; }
+
+        /* 5. FOOTER */
+        footer { border-top: 1px solid var(--border); padding: 3rem 0; background: #f9f9f9; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 5rem; }
+        .footer-links { margin-bottom: 1.5rem; }
+        .footer-links a { margin: 0 12px; color: var(--text); font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="/" class="logo">CalcsHub.</a>
+            <a href="#footer" class="menu-link">Menu</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <nav class="breadcrumbs"><a href="/">Home</a> <span>/</span> Finance</nav>
+
+        <section class="page-hero">
+            <h1>Salary & Finance</h1>
+        </section>
+
+        <div class="tool-list">
+            <a href="/salary-hike-calculator" class="tool-row">Salary Hike Calculator <span class="arrow">→</span></a>
+            <a href="/experience-calculator" class="tool-row">Experience Calculator <span class="arrow">→</span></a>
+            <a href="/mortgage-payoff-calculator" class="tool-row">Mortgage Payoff Calculator <span class="arrow">→</span></a>
+            <a href="/cd-interest-calculator" class="tool-row">CD Interest Calculator <span class="arrow">→</span></a>
+            <a href="/simple-interest-calculator" class="tool-row">Simple Interest Calculator <span class="arrow">→</span></a>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/disclaimer">Disclaimer</a>
+            </div>
+            <p>&copy; 2026 CalcsHub. Use for reference only.</p>
+        </div>
+    </footer>
+</body>
+</html>
