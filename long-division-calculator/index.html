@@ -134,57 +134,59 @@
         .solver { display: none; margin-top: 2rem; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* FIX: Horizontal Scroll & Sticky Grid */
+        /* FIX: FORCE HORIZONTAL SCROLL ONLY */
         .board-wrap { 
             background: #fff; 
             padding: 2rem; 
             border-radius: var(--rad); 
             border: 1px solid var(--bord); 
             
-            /* The Fix: Force horizontal scroll, no vertical limit */
+            /* Strict Sizing */
             width: 100%;
-            overflow-x: auto; 
+            max-width: 100%; /* Prevents Page Expansion */
+            overflow-x: auto; /* Enables Scrollbar at bottom */
             overflow-y: hidden;
             
+            /* Text alignment */
+            text-align: left;
             position: relative; 
             min-height: 150px; 
-            display: block; /* Block works better for pure scrolling pre tags */
         }
         
-        /* Math Text - Ensure it doesn't wrap */
+        /* Math Text - Grows Wide */
         .math-pre { 
             font-family: 'Courier New', monospace; 
             font-size: 1.4rem; 
             line-height: 1.4; 
-            white-space: pre; /* Keeps math on one line, triggers scroll */
+            white-space: pre; /* Keeps math on one line, forces width */
             font-weight: 700; 
             letter-spacing: 2px; 
-            display: inline-block; /* Allows width to grow */
-            min-width: 100%; /* Ensures grid covers at least the view */
+            display: inline-block; /* Allows width to grow beyond parent */
+            padding-right: 2rem; /* Buffer for scrolling */
         }
         
         .hl-d { color: var(--c-div); } .hl-q { color: var(--c-quo); } .hl-s { color: var(--c-sub); }
         
-        /* Dyscalculia Mode: GRID ON BACKGROUND */
-        /* We removed the overlay div. Now we apply grid to the box itself. */
+        /* DYS MODE: Grid now applied to CONTENT (.math-pre) */
+        /* This ensures the grid scrolls WITH the numbers */
         .solver.dys-mode .board-wrap { 
             background-color: var(--bg-dys) !important; 
             border: 2px solid var(--bl); 
-            
-            /* The Grid Pattern */
-            background-image: 
-                linear-gradient(#000 1px, transparent 1px), 
-                linear-gradient(90deg, #000 1px, transparent 1px);
-            background-size: 20px 20px;
-            
-            /* Critical: Makes grid scroll with the numbers */
-            background-attachment: local; 
         }
         
         .solver.dys-mode .math-pre { 
             font-size: 1.6rem; 
-            letter-spacing: 4px; /* Matches grid size approx */
+            letter-spacing: 4px; 
             color: #000 !important; 
+            
+            /* GRID LINES applied to the growing text element */
+            background-image: 
+                linear-gradient(#000 1px, transparent 1px), 
+                linear-gradient(90deg, #000 1px, transparent 1px);
+            background-size: 20px 20px;
+            /* Ensures grid covers full scrolling width */
+            min-width: 100%; 
+            min-height: 100%;
         }
 
         .expl-box { background: #eff6ff; border-left: 4px solid var(--bl); padding: 1rem; margin-top: 1.5rem; border-radius: 8px; }
