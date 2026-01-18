@@ -6,13 +6,14 @@ function cleanNum(num) {
     return parseFloat(num.toFixed(10));
 }
 
+// FIX 1: Updated class name to match optimized CSS (.dys-mode)
 function toggleDyscalculia() {
     const isChecked = document.getElementById('dyscalculiaToggle').checked;
     const container = document.getElementById('solverArea');
     if(isChecked) {
-        container.classList.add('dyscalculia-active');
+        container.classList.add('dys-mode');
     } else {
-        container.classList.remove('dyscalculia-active');
+        container.classList.remove('dys-mode');
     }
     if(steps.length > 0) renderStep(currentStepIndex);
 }
@@ -36,6 +37,7 @@ function startSolver() {
 
     renderStep(0);
     document.getElementById('solverArea').style.display = 'block';
+    // Scroll to the solver
     document.getElementById('solverArea').scrollIntoView({ behavior: 'smooth', block: 'center' });
     updateNavButtons();
 }
@@ -170,8 +172,9 @@ function renderStep(idx) {
     const dividendRaw = document.getElementById('dividend').value;
     const divisor = document.getElementById('divisor').value;
 
-    const wrapDivisor = (v) => `<span class="hl-divisor">${v}</span>`;
-    const wrapQuotient = (v) => `<span class="hl-quotient">${v}</span>`;
+    // FIX 2: Updated class names to match optimized CSS (.hl-d, .hl-q)
+    const wrapDivisor = (v) => `<span class="hl-d">${v}</span>`;
+    const wrapQuotient = (v) => `<span class="hl-q">${v}</span>`;
     
     let fullDividend = dividendRaw.toString();
     let maxIndent = 0;
@@ -236,9 +239,10 @@ function renderWorkRows(rows, fullDividend, leftPadding) {
         let spaces = endPos - (valStr.length - 1);
         if (spaces < 0) spaces = 0;
 
+        // FIX 3: Updated class name to match optimized CSS (.hl-s)
         if (row.type === 'sub') {
-            let line = " ".repeat(spaces) + `<span class="hl-sub">${valStr}</span>`;
-            if (spaces >= 2) line = " ".repeat(spaces - 2) + "- " + `<span class="hl-sub">${valStr}</span>`;
+            let line = " ".repeat(spaces) + `<span class="hl-s">${valStr}</span>`;
+            if (spaces >= 2) line = " ".repeat(spaces - 2) + "- " + `<span class="hl-s">${valStr}</span>`;
             html += line + "<br>";
             html += " ".repeat(spaces) + "-".repeat(valStr.length) + "<br>"; 
         } else {
@@ -268,13 +272,14 @@ function updateNavButtons() {
     document.getElementById('btnPrev').disabled = (currentStepIndex <= 0);
     document.getElementById('btnNext').disabled = (currentStepIndex >= steps.length - 1);
     
-    const box = document.querySelector('.step-explanation-box');
+    const box = document.querySelector('.expl-box');
     if (!box) return;
 
     if (steps[currentStepIndex] && steps[currentStepIndex].isDone) {
         box.style.borderColor = "#10b981"; 
         box.style.background = "#d1fae5";
     } else {
+        // Reset to default style defined in CSS (.expl-box)
         box.style.borderColor = ""; 
         box.style.background = "";
     }
@@ -311,17 +316,15 @@ function resetTool() {
 
 /* --- LAZY LOAD PDF GENERATION --- */
 async function generatePDF() {
-    const btn = document.querySelector('.btn-worksheet');
+    const btn = document.querySelector('.btn-sec');
     
     // 1. Check if loaded
     if (!window.jspdf) {
-        // UI Feedback
         const originalText = btn.innerHTML;
-        btn.innerHTML = 'Loading PDF Engine...';
+        btn.innerHTML = 'Loading...';
         btn.disabled = true;
         btn.style.opacity = '0.7';
 
-        // Lazy Load Script
         try {
             await new Promise((resolve, reject) => {
                 const script = document.createElement('script');
@@ -337,13 +340,12 @@ async function generatePDF() {
             return;
         }
 
-        // Restore UI
         btn.innerHTML = originalText;
         btn.disabled = false;
         btn.style.opacity = '1';
     }
 
-    // 2. Generate PDF using loaded library
+    // 2. Generate PDF
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     doc.setFont("helvetica", "bold");
