@@ -212,20 +212,20 @@
         .cls-btn { font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--mut); }
         .nav-lnk a { display: block; padding: 12px 0; border-bottom: 1px solid var(--bord); font-weight: 600; }
 
-        @media (max-width: 480px) { 
-    .container { 
-        padding: 0 10px !important; 
+        @media (max-width: 480px) {
+    .calc-card {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
-    .calc-card { 
-        padding: 16px !important; 
+    #calcForm, .sig {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
-    .board-wrap { 
-        width: calc(100% + 32px) !important;
-        margin-left: -16px !important;
-        margin-right: -16px !important;
-        border-radius: 4px;
-        border-left: none;
-        border-right: none;
+    .board-wrap {
+        width: 100% !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
     }
 }
     </style>
