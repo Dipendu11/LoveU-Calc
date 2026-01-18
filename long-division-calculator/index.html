@@ -79,6 +79,8 @@
         /* Layout */
         .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
         .limiter { max-width: 800px; margin: 0 auto; }
+        @media (max-width: 480px) { .container { padding: 0 1.25rem; } }
+        
         /* Header */
         header { padding: 1rem 0; position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); margin-bottom: 2rem; }
         .head-in { display: flex; justify-content: space-between; align-items: center; }
@@ -213,10 +215,9 @@
         .nav-lnk a { display: block; padding: 12px 0; border-bottom: 1px solid var(--bord); font-weight: 600; }
 
         @media (max-width: 480px) {
-            .container { padding: 0 1.25rem; }
     .calc-card {
-        padding-left: 4px !important;
-        padding-right: 4px !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
     }
     #calcForm, .sig {
         padding-left: 1.25rem;
