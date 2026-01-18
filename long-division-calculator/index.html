@@ -79,7 +79,30 @@
         /* Layout */
         .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
         .limiter { max-width: 800px; margin: 0 auto; }
-        @media (max-width: 480px) { .container { padding: 0 1.25rem; } }
+        /* --- MOBILE OPTIMIZATIONS (Paste this) --- */
+@media (max-width: 480px) { 
+    /* 1. Keeps the tool away from the phone screen edge */
+    .container { 
+        padding: 0 1.25rem; 
+    }
+
+    /* 2. Pushes the result box to the edges of the white card */
+    .calc-card { 
+        padding: 1.5rem 6px; /* 6px gap on the sides */
+    }
+
+    /* 3. Expands the black box to fill that new space */
+    .board-wrap { 
+        padding: 1rem 10px; 
+        border-radius: 6px;
+        width: 100%;
+    }
+    
+    /* 4. Prevents inputs from zooming on iPhone */
+    .inp-grp input {
+        font-size: 16px; 
+    }
+}
         
         /* Header */
         header { padding: 1rem 0; position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); margin-bottom: 2rem; }
