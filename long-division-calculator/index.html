@@ -3,10 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Long Division Calculator - Step-by-Step | LoveU Calc</title>
-    <meta name="description" content="Solve long division problems instantly. Shows complete step-by-step work, quotient, remainder, and supports multiple notation styles.">
+    <title>Long Division Calculator with Steps (Remainder & Decimal) - LoveU Calc</title>
+    <meta name="description" content="Free Long Division Calculator with steps. Solves division problems with remainders or decimals. Shows work for 3rd, 4th, and 5th grade math.">
     <link rel="canonical" href="https://loveucalc.com/long-division-calculator/">
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Long Division Calculator",
+      "url": "https://loveucalc.com/long-division-calculator/",
+      "description": "A step-by-step long division calculator that shows the complete work for division problems with remainders or decimals.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to do Long Division",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Divide",
+          "text": "Divide the first digit of the dividend by the divisor."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Multiply",
+          "text": "Multiply the answer by the divisor and write it below."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Subtract",
+          "text": "Subtract the result from the dividend digit."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Bring Down",
+          "text": "Bring down the next digit and repeat the process."
+        }
+      ]
+    }
+    </script>
+
     <style>
         /* 1. LOVEU DESIGN VARIABLES */
         :root {
@@ -162,7 +208,7 @@
         }
         .btn-reset:hover { border-color: #ef4444; color: #ef4444; }
 
-        /* 6. SOLVER AREA & FIXES */
+        /* 6. SOLVER AREA */
         .solver-container {
             display: none; 
             margin-top: 2rem;
@@ -179,7 +225,6 @@
             text-align: left;
             position: relative;
             min-height: 150px;
-            /* FIX: Use flex-start instead of center so scrollbar works for wide content */
             display: flex; 
             justify-content: flex-start;
         }
@@ -216,7 +261,6 @@
             font-weight: 700;
             letter-spacing: 2px;
             z-index: 2; position: relative;
-            /* Ensures numbers aren't flush against the left wall */
             margin-right: 2rem; 
         }
 
@@ -259,6 +303,11 @@
         footer { border-top: 1px solid var(--border); padding: 4rem 0; background: var(--surface); text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: auto; }
         .footer-links a { margin: 0 15px; font-weight: 600; color: var(--text-main); }
 
+        /* 8. CONTENT STYLING (Simple, Reusing styles) */
+        .content-area h2 { font-size: 1.5rem; font-weight: 800; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text-main); }
+        .content-area p { margin-bottom: 1.2rem; font-size: 1.05rem; color: var(--text-main); }
+        .content-area ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+        .content-area li { margin-bottom: 0.5rem; color: var(--text-main); }
     </style>
 </head>
 <body>
@@ -283,7 +332,7 @@
     <div id="searchOverlay" class="overlay" aria-hidden="true">
         <div class="search-bar-container">
             <label for="globalSearchInput" class="sr-only" style="display:none;">Search Tools</label>
-            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools (e.g. Asphalt, CGPA)..." autocomplete="off">
+            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools..." autocomplete="off">
             <button id="closeSearch" class="close-btn" aria-label="Close Search">&times;</button>
         </div>
         <div id="searchResults" class="search-results-container"></div>
@@ -297,7 +346,7 @@
                 </button>
                 <a href="/" class="logo-wrapper" aria-label="LoveU Calc Home">
                     <span class="logo-love">Love</span>
-                    <svg class="logo-u-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="logo-u-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <defs><linearGradient id="uGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#db2777" /><stop offset="100%" style="stop-color:#2563eb" /></linearGradient></defs>
                         <path d="M 20 10 L 20 60 Q 20 90 50 90 Q 80 90 80 60 L 80 10" stroke="url(#uGradient)" stroke-width="28" stroke-linecap="round" />
                     </svg>
@@ -305,13 +354,12 @@
                 </a>
             </div>
             <button id="searchBtn" class="icon-btn search-icon" aria-label="Open Search">
-                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </button>
         </div>
     </header>
 
     <main class="container">
-        
         <div class="content-limiter">
             
             <nav class="breadcrumbs">
@@ -328,13 +376,13 @@
                     
                     <div class="input-grid">
                         <div>
-                            <label for="dividend">Dividend</label>
+                            <label for="dividend">Dividend (Number being divided)</label>
                             <div class="input-group">
                                 <input type="number" id="dividend" placeholder="e.g. 1250" required min="0" step="any">
                             </div>
                         </div>
                         <div>
-                            <label for="divisor">Divisor</label>
+                            <label for="divisor">Divisor (Number dividing by)</label>
                             <div class="input-group">
                                 <input type="number" id="divisor" placeholder="e.g. 5" required min="0" step="any">
                             </div>
@@ -344,10 +392,10 @@
                     <div class="options-bar">
                         <div class="toggle-group">
                             <label class="toggle-label">
-                                <input type="radio" name="mode" value="remainder" checked> Remainder
+                                <input type="radio" name="mode" value="remainder" checked> Remainder Mode (R)
                             </label>
                             <label class="toggle-label">
-                                <input type="radio" name="mode" value="decimal"> Decimal
+                                <input type="radio" name="mode" value="decimal"> Decimal Mode (.)
                             </label>
                         </div>
                         
@@ -355,9 +403,9 @@
                             <label style="width:100%">
                                 <span style="display:block; margin-bottom:5px; font-weight:700; font-size:0.9rem;">Notation Style</span>
                                 <select id="notationSelect" class="full-select" onchange="if(steps.length>0) renderStep(currentStepIndex);">
-                                    <option value="us">US/UK (Bracket)</option>
-                                    <option value="eu">Europe (Galley)</option>
-                                    <option value="ger">Germany (Colon)</option>
+                                    <option value="us">US/UK (Bracket Method)</option>
+                                    <option value="eu">Europe (Galley Method)</option>
+                                    <option value="ger">Germany (Colon Method)</option>
                                 </select>
                             </label>
                         </div>
@@ -365,7 +413,7 @@
                         <div class="toggle-group">
                             <label class="toggle-label" title="High contrast, readable font, grid lines">
                                 <input type="checkbox" id="dyscalculiaToggle" onchange="toggleDyscalculia()"> 
-                                <span>Access Mode (Dyscalculia)</span>
+                                <span>Access Mode (Dyscalculia Support)</span>
                             </label>
                         </div>
                     </div>
@@ -402,8 +450,28 @@
             </div>
 
             <article class="content-area">
-                <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);">Mastering Long Division</h2>
-                <p style="color: var(--text-main);">Long division is the process of breaking a complex division problem into smaller, manageable steps: Divide, Multiply, Subtract, and Bring Down.</p>
+                <h2>What is Long Division?</h2>
+                <p>Long division is a standard algorithm used in arithmetic for dividing large numbers. It breaks down a complex division problem into a sequence of easier steps: Divide, Multiply, Subtract, and Bring Down (often remembered by the mnemonic <strong>D</strong>ad, <strong>M</strong>om, <strong>S</strong>ister, <strong>B</strong>rother).</p>
+
+                <h2>How to Use This Calculator</h2>
+                <p>Our tool is designed to not just give you the answer, but to teach you the process.</p>
+                <ul>
+                    <li><strong>Dividend:</strong> Enter the number you want to divide (the larger number inside the bracket).</li>
+                    <li><strong>Divisor:</strong> Enter the number you are dividing by (the number outside).</li>
+                    <li><strong>Remainder Mode:</strong> Shows the result as a whole number with a remainder (e.g., 10 R 2). Best for elementary students.</li>
+                    <li><strong>Decimal Mode:</strong> Continues the division past the decimal point to give a precise answer.</li>
+                </ul>
+
+                <h2>The 4 Steps of Long Division</h2>
+                <ol>
+                    <li><strong>Divide:</strong> How many times does the divisor go into the first digit of the dividend? Write that number on top.</li>
+                    <li><strong>Multiply:</strong> Multiply the number you just wrote by the divisor. Write the result below.</li>
+                    <li><strong>Subtract:</strong> Subtract that result from the dividend digit to find the remainder.</li>
+                    <li><strong>Bring Down:</strong> Bring down the next digit of the dividend and repeat the process.</li>
+                </ol>
+
+                <h2>Special Features</h2>
+                <p>We built this tool with accessibility in mind. Try the <strong>"Access Mode"</strong> if you have dyscalculia or find standard math notation hard to read. It enables a high-contrast font and a grid background to help align the numbers perfectly.</p>
             </article>
 
         </div>
