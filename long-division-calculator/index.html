@@ -3,24 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Long Division Calculator with Steps & Remainders | Free Worksheet Generator</title>
-    <meta name="description" content="Solve long division problems instantly. Shows the complete step-by-step work (Divide, Multiply, Subtract, Bring Down). Features printable PDF worksheets and Dyscalculia mode.">
-    
+    <title>Long Division Calculator - Step-by-Step | LoveU Calc</title>
+    <meta name="description" content="Solve long division problems instantly. Shows complete step-by-step work, quotient, remainder, and supports multiple notation styles.">
     <link rel="canonical" href="https://loveucalc.com/long-division-calculator/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Long Division Calculator (Step-by-Step Solver)">
-    <meta property="og:description" content="Stuck on math? This tool shows you the work, not just the answer. Great for checking homework or creating practice sheets.">
-    <meta property="og:url" content="https://loveucalc.com/long-division-calculator/">
-    <meta property="og:image" content="https://loveucalc.com/assets/long-division-preview.jpg"> 
-    <meta property="og:site_name" content="LoveU Calc">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Long Division Calculator with Steps">
-    <meta name="twitter:description" content="Visualize long division instantly. Supports remainders, decimals, and printable worksheets.">
-
-    <meta name="theme-color" content="#2563eb">
     
     <style>
         /* 1. LOVEU DESIGN VARIABLES */
@@ -271,103 +256,10 @@
         .nav-links a { display: block; padding: 15px 0; font-size: 1.1rem; font-weight: 600; color: var(--text-main); border-bottom: 1px solid var(--border); }
         .search-input { width: 100%; padding: 12px 0; font-size: 1.2rem; border: none; border-bottom: 2px solid var(--border); outline: none; color: var(--text-main); }
         .search-results-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; background: var(--surface); }
-        
-        /* --- SPEED INDEX OPTIMIZATIONS --- */
-        
-        /* A. Defer rendering of the heavy text content until scroll */
-        .content-area, footer {
-            content-visibility: auto;
-            contain-intrinsic-size: 1000px; /* Estimates height to prevent scrollbar jumping */
-        }
-        
-        /* B. Speed up table rendering */
-        table {
-            width: 100%; 
-            border-collapse: collapse; 
-            table-layout: fixed; /* Crucial for rendering speed */
-        }
-        
         footer { border-top: 1px solid var(--border); padding: 4rem 0; background: var(--surface); text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: auto; }
         .footer-links a { margin: 0 15px; font-weight: 600; color: var(--text-main); }
 
     </style>
-
-    <script type="application/ld+json">
-    [
-        {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "LoveU Calc Long Division Solver",
-            "url": "https://loveucalc.com/long-division-calculator/",
-            "applicationCategory": "EducationalApplication",
-            "operatingSystem": "Web Browser",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            },
-            "featureList": "Step-by-step visualization, PDF Worksheet Generator, Dyscalculia Access Mode, Remainder/Decimal Toggle",
-            "author": {
-                "@type": "Organization",
-                "name": "LoveU Calc"
-            }
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": "How to Do Long Division (US Method)",
-            "description": "Follow the standard 'Does McDonald's Sell Burgers' method to solve any division problem.",
-            "step": [
-                {
-                    "@type": "HowToStep",
-                    "name": "Divide",
-                    "text": "Determine how many times the divisor fits into the first digit of the dividend.",
-                    "position": 1
-                },
-                {
-                    "@type": "HowToStep",
-                    "name": "Multiply",
-                    "text": "Multiply that number by the divisor and write the result underneath the dividend.",
-                    "position": 2
-                },
-                {
-                    "@type": "HowToStep",
-                    "name": "Subtract",
-                    "text": "Subtract the result from the digit above to find the remainder.",
-                    "position": 3
-                },
-                {
-                    "@type": "HowToStep",
-                    "name": "Bring Down",
-                    "text": "Bring down the next digit from the dividend to continue the cycle.",
-                    "position": 4
-                }
-            ]
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "What do I do if the remainder is not zero?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "You can write it as 'R' (e.g., 5 R1) for school homework, or toggle the 'Decimal' mode in our tool to continue dividing until you get a precise decimal answer."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Can I print a worksheet from this tool?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. Click the 'PDF Worksheet' button to generate a free, printable practice sheet based on the current problem."
-                    }
-                }
-            ]
-        }
-    ]
-    </script>
 </head>
 <body>
 
@@ -462,7 +354,7 @@
                         <div class="toggle-group">
                             <label style="width:100%">
                                 <span style="display:block; margin-bottom:5px; font-weight:700; font-size:0.9rem;">Notation Style</span>
-                                <select id="notationSelect" class="full-select" onchange="if(typeof steps !== 'undefined' && steps.length>0) renderStep(currentStepIndex);">
+                                <select id="notationSelect" class="full-select" onchange="if(steps.length>0) renderStep(currentStepIndex);">
                                     <option value="us">US/UK (Bracket)</option>
                                     <option value="eu">Europe (Galley)</option>
                                     <option value="ger">Germany (Colon)</option>
@@ -509,198 +401,9 @@
                 </div>
             </div>
 
-            <article class="content-area" style="max-width: 800px; margin: 4rem auto; line-height: 1.8; font-family: system-ui, sans-serif; color: var(--text-main);">
-
-    <section style="margin-bottom: 3rem;">
-        <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-            Long division is one of the hardest topics in elementary math. It requires patience, multiple steps, and perfect alignment. One small subtraction error can ruin the whole answer.
-        </p>
-        <p style="font-size: 1.1rem;">
-            Whether you are a student checking your homework or a teacher looking for printable practice sheets, the <strong>LoveU Calc Long Division Solver</strong> acts as your personal assistant. It doesn't just solve the problem; it visualizes the work and generates unlimited practice worksheets instantly.
-        </p>
-    </section>
-
-    <section id="target-audience" style="margin-bottom: 3rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Who Should Use This Tool?</h2>
-        <p>We built LoveU Calc to bridge the gap between confusion and clarity. This tool is perfect for:</p>
-        <ul style="list-style-type: disc; padding-left: 20px;">
-            <li style="margin-bottom: 10px;"><strong>Teachers (Unlimited Worksheets):</strong> Stop searching for "long division worksheets" online. Click our <em>"PDF Worksheet"</em> button to generate fresh, printable problems for your class in seconds.</li>
-            <li style="margin-bottom: 10px;"><strong>Students (Grades 4-6):</strong> Use the step-by-step mode to verify your manual calculations and find exactly where you made a mistake (e.g., a subtraction error in step 2).</li>
-            <li style="margin-bottom: 10px;"><strong>Parents:</strong> Helping kids with math homework can be frustrating if you forgot the method. Use this to quickly generate the correct "work" to show your child how it's done.</li>
-            <li style="margin-bottom: 10px;"><strong>Special Education (Dyscalculia):</strong> Students with visual processing issues can use our unique <strong>"Access Mode"</strong> to see high-contrast grids that keep numbers from "floating" around the page.</li>
-        </ul>
-    </section>
-
-    <section id="how-to-use" style="margin-bottom: 3rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; border-left: 5px solid var(--calc-blue); padding-left: 15px;">How to Use the Calculator & PDF Generator</h2>
-        <p>Follow these steps to solve a single problem or create a full practice sheet:</p>
-        
-        <div style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
-            <ul style="list-style: none; padding: 0;">
-                <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                    <span style="background: var(--calc-blue); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">1</span>
-                    <div>
-                        <strong>Enter the Numbers:</strong> Type your <em>Dividend</em> (inside the house) and <em>Divisor</em> (outside).
-                    </div>
-                </li>
-                <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                    <span style="background: var(--calc-blue); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">2</span>
-                    <div>
-                        <strong>Select Notation & Mode:</strong> Choose between US (Bracket) or European styles, and select "Remainder" or "Decimal" output.
-                    </div>
-                </li>
-                <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                    <span style="background: var(--calc-blue); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">3</span>
-                    <div>
-                        <strong>For Instant Answers:</strong> Click <strong>"Solve Step-by-Step"</strong>. Use the "Auto Play" button to watch the math happen like a video.
-                    </div>
-                </li>
-                <li style="margin-bottom: 0; display: flex; gap: 10px;">
-                    <span style="background: var(--love-pink); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">4</span>
-                    <div>
-                        <strong>For Practice Sheets:</strong> Click the <strong>"PDF Worksheet"</strong> button. The tool will automatically generate a printable PDF with the current problem layout for offline practice.
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="division-methods" style="margin-bottom: 3rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; border-left: 5px solid var(--love-pink); padding-left: 15px;">Understanding the 3 Global Methods</h2>
-        <p>LoveU Calc is the only tool that supports the three major global notation styles:</p>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px;">
-            <div style="padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: white; box-shadow: var(--shadow-sm);">
-                <h3 style="color: var(--calc-blue); margin-top: 0; font-size:1.1rem;">🇺🇸 US/UK (Bracket)</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">Also known as the "Bus Stop" method. The dividend sits inside a curved bracket ("the house"), and the quotient goes on the roof.</p>
-                <code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px; display:block; text-align:center; margin-top:10px;">12 ) 480</code>
-            </div>
-            <div style="padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: white; box-shadow: var(--shadow-sm);">
-                <h3 style="color: var(--calc-blue); margin-top: 0; font-size:1.1rem;">🇪🇺 European (Galley)</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">Common in France and Latin America. A vertical line separates the numbers, and the answer is written in an "L" shaped box.</p>
-                <code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px; display:block; text-align:center; margin-top:10px;">480 | 12</code>
-            </div>
-            <div style="padding: 15px; border: 1px solid var(--border); border-radius: 8px; background: white; box-shadow: var(--shadow-sm);">
-                <h3 style="color: var(--calc-blue); margin-top: 0; font-size:1.1rem;">🇩🇪 German (Colon)</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">Used in Germany and Norway. It resembles a linear equation using a colon (:).</p>
-                <code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px; display:block; text-align:center; margin-top:10px;">480 : 12 = 40</code>
-            </div>
-        </div>
-    </section>
-
-    <section id="how-to-do" style="margin-bottom: 3rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">How to Do Long Division (The 4 Steps)</h2>
-        <p>In the US, students remember the cycle using the mnemonic <strong>"Does McDonald's Sell Burgers?"</strong>:</p>
-        
-        <div style="display: flex; flex-direction: column; gap: 15px; background: #eff6ff; padding: 25px; border-radius: 12px; border-left: 4px solid var(--calc-blue);">
-            <div>
-                <strong style="font-size: 1.1rem; color: var(--calc-blue);">Step 1: Divide (Daddy)</strong>
-                <p style="margin: 0; font-size: 0.95rem;">Check how many times the divisor fits into the first digit of the dividend.</p>
-            </div>
-            <div>
-                <strong style="font-size: 1.1rem; color: var(--calc-blue);">Step 2: Multiply (Mommy)</strong>
-                <p style="margin: 0; font-size: 0.95rem;">Multiply that number by the divisor and write the result underneath.</p>
-            </div>
-            <div>
-                <strong style="font-size: 1.1rem; color: var(--calc-blue);">Step 3: Subtract (Sister)</strong>
-                <p style="margin: 0; font-size: 0.95rem;">Subtract your result from the digit above to find the remainder.</p>
-            </div>
-            <div>
-                <strong style="font-size: 1.1rem; color: var(--calc-blue);">Step 4: Bring Down (Brother)</strong>
-                <p style="margin: 0; font-size: 0.95rem;">Bring down the next digit from the dividend and start the cycle again.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="examples" style="margin-bottom: 3rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Common Problems Solved</h2>
-        <p>Click any problem below to load it into the calculator and see the step-by-step proof.</p>
-
-        <div style="overflow-x: auto;">
-            <table style="width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--border); border-radius: 8px;">
-                <thead>
-                    <tr style="background: #f8fafc; text-align: left; border-bottom: 2px solid var(--border);">
-                        <th style="padding: 12px; font-weight: 700;">Problem</th>
-                        <th style="padding: 12px; font-weight: 700;">Quotient</th>
-                        <th style="padding: 12px; font-weight: 700;">Remainder</th>
-                        <th style="padding: 12px; font-weight: 700;">Solution</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 12px;">100 ÷ 7</td>
-                        <td style="padding: 12px;">14</td>
-                        <td style="padding: 12px;">2</td>
-                        <td style="padding: 12px;"><button onclick="solve(100,7)" style="background:none; border:none; color:var(--calc-blue); cursor:pointer; font-weight:700; text-decoration:underline;">Show Steps</button></td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 12px;">500 ÷ 25</td>
-                        <td style="padding: 12px;">20</td>
-                        <td style="padding: 12px;">0</td>
-                        <td style="padding: 12px;"><button onclick="solve(500,25)" style="background:none; border:none; color:var(--calc-blue); cursor:pointer; font-weight:700; text-decoration:underline;">Show Steps</button></td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 12px;">1245 ÷ 15</td>
-                        <td style="padding: 12px;">83</td>
-                        <td style="padding: 12px;">0</td>
-                        <td style="padding: 12px;"><button onclick="solve(1245,15)" style="background:none; border:none; color:var(--calc-blue); cursor:pointer; font-weight:700; text-decoration:underline;">Show Steps</button></td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid #eee;">
-                        <td style="padding: 12px;">365 ÷ 30</td>
-                        <td style="padding: 12px;">12</td>
-                        <td style="padding: 12px;">5</td>
-                        <td style="padding: 12px;"><button onclick="solve(365,30)" style="background:none; border:none; color:var(--calc-blue); cursor:pointer; font-weight:700; text-decoration:underline;">Show Steps</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section id="faq" style="border-top: 1px dashed var(--border); padding-top: 2rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1.5rem;">Frequently Asked Questions</h2>
-
-        <details style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-            <summary style="font-weight: 700; cursor: pointer; font-size: 1.1rem;">Is the PDF Worksheet generator free?</summary>
-            <p style="margin-top: 10px; color: var(--text-muted);">Yes! It is completely free. Teachers and parents can generate unlimited worksheets for practice without any registration or cost.</p>
-        </details>
-
-        <details style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-            <summary style="font-weight: 700; cursor: pointer; font-size: 1.1rem;">What do I do if the remainder is not zero?</summary>
-            <p style="margin-top: 10px; color: var(--text-muted);">You can write it as "R" (e.g., 5 R1) for school homework, or toggle the "Decimal" mode in our tool to continue dividing until you get a precise decimal answer.</p>
-        </details>
-
-        <details style="margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
-            <summary style="font-weight: 700; cursor: pointer; font-size: 1.1rem;">What is Access Mode (Dyscalculia)?</summary>
-            <p style="margin-top: 10px; color: var(--text-muted);">We added a special feature for students with learning differences. By clicking the "Access Mode" checkbox, the tool changes to high-contrast colors and adds grid lines to help keep numbers aligned visually.</p>
-        </details>
-    </section>
-
-    <script>
-        function solve(div, divr) {
-            const d1 = document.getElementById('dividend');
-            const d2 = document.getElementById('divisor');
-            if(d1 && d2) {
-                d1.value = div;
-                d2.value = divr;
-            }
-            
-            // Scroll safely
-            window.scrollTo({top: 150, behavior: 'smooth'});
-            
-            // Wait for scroll to complete before triggering logic
-            setTimeout(() => {
-                if (typeof startSolver === 'function') {
-                    // Best Practice: Call the function directly
-                    startSolver();
-                } else {
-                    // Fallback: Click the button
-                    const btn = document.querySelector('.btn-calc');
-                    if(btn) btn.click();
-                }
-            }, 500);
-        }
-    </script>
-
+            <article class="content-area">
+                <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);">Mastering Long Division</h2>
+                <p style="color: var(--text-main);">Long division is the process of breaking a complex division problem into smaller, manageable steps: Divide, Multiply, Subtract, and Bring Down.</p>
             </article>
 
         </div>
