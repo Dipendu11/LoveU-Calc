@@ -130,11 +130,23 @@
         .btn-res { background: transparent; border: 1px solid var(--bord); color: var(--mut); padding: 12px; border-radius: var(--rad); font-weight: 600; cursor: pointer; width: 100%; }
         .btn-res:hover { border-color: #ef4444; color: #ef4444; }
 
-        /* Solver */
+        /* Solver Area */
         .solver { display: none; margin-top: 2rem; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .board-wrap { background: #fff; padding: 2rem; border-radius: var(--rad); border: 1px solid var(--bord); overflow-x: auto; position: relative; min-height: 150px; display: flex; justify-content: flex-start; }
+        /* FIX: max-height and overflow:auto prevent box from exploding vertically */
+        .board-wrap { 
+            background: #fff; 
+            padding: 2rem; 
+            border-radius: var(--rad); 
+            border: 1px solid var(--bord); 
+            position: relative; 
+            min-height: 150px; 
+            display: flex; 
+            justify-content: flex-start;
+            max-height: 600px;  /* Limits vertical height */
+            overflow: auto;     /* Adds scrollbars if content is too big */
+        }
         
         .math-pre { font-family: 'Courier New', monospace; font-size: 1.4rem; line-height: 1.4; white-space: pre; font-weight: 700; letter-spacing: 2px; z-index: 2; position: relative; margin-right: 2rem; }
         .hl-d { color: var(--c-div); } .hl-q { color: var(--c-quo); } .hl-s { color: var(--c-sub); }
@@ -160,7 +172,6 @@
         .content ul, .content ol { padding-left: 1.5rem; margin-bottom: 1.5rem; }
         .content li { margin-bottom: 0.5rem; }
         .content strong { color: var(--bl); font-weight: 700; }
-        /* FIX: White-space: pre forces perfect character alignment */
         .example-box { white-space: pre; overflow-x: auto; font-family: 'Courier New', monospace; background: #f1f5f9; padding: 1.5rem; border-radius: 8px; width: fit-content; margin-bottom: 1.5rem; border: 1px solid var(--bord); font-weight: 700; color: var(--txt); }
 
         .ov-lay { position: fixed; inset: 0; background: rgba(15,23,42,0.4); backdrop-filter: blur(4px); z-index: 100; opacity: 0; visibility: hidden; transition: 0.2s; }
