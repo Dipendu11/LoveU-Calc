@@ -4,126 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - LoveU Calc</title>
-    <meta name="description" content="LoveU Calc is a free, open-source collection of fast online calculators. We prioritize privacy, speed, and mobile usability.">
+    <meta name="description" content="Learn about LoveU Calc. We build fast, privacy-focused, and free calculators for everyone.">
     <link rel="canonical" href="https://loveucalc.com/about">
     
     <style>
-        /* 1. RESET & VARIABLES */
-        :root { --bg:#fff; --text:#111; --muted:#666; --border:#e5e5e5; --accent:#000; --highlight:#f4f4f4; }
+        /* 1. MODERN APP VARIABLES */
+        :root {
+            --bg-body: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            
+            --love-pink: #db2777;
+            --calc-blue: #2563eb;
+            --gradient-brand: linear-gradient(135deg, #db2777 0%, #2563eb 100%);
+            
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-float: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 2. RESET & BASE */
         * { box-sizing: border-box; }
         
-        /* 2. STICKY FOOTER LAYOUT */
         body { 
             margin: 0; 
-            font-family: system-ui, -apple-system, sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-body); 
+            color: var(--text-main); 
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            display: flex; flex-direction: column; min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        main { flex: 1; width: 100%; }
-        
-        a { text-decoration: none; color: inherit; }
-        .container { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* 3. HEADER & NAVIGATION STYLES */
+        main { flex: 1; width: 100%; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+        @media (max-width: 480px) { .container { padding: 0 1.25rem; } }
+
+        /* 3. HEADER */
         header { 
             padding: 1rem 0; 
-            border-bottom: 1px solid var(--border); 
-            margin-bottom: 2rem; 
-            background: #fff;
-            position: relative; z-index: 10;
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .header-left { display: flex; align-items: center; gap: 1rem; }
 
-        /* Hamburger Button */
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .header-left { display: flex; align-items: center; gap: 1.2rem; }
+
         .icon-btn {
-            background: none; border: none; cursor: pointer; padding: 5px;
+            background: transparent; border: none; cursor: pointer; padding: 8px;
             display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; width: 44px; height: 44px;
+            transition: var(--transition);
         }
-        .burger-icon {
-            width: 24px; height: 2px; background: var(--accent); position: relative;
-        }
+        .icon-btn:hover { background: rgba(0,0,0,0.04); }
+
+        .burger-icon { width: 22px; height: 2.5px; background: var(--text-main); position: relative; border-radius: 2px; }
         .burger-icon::before, .burger-icon::after {
             content: ''; position: absolute; left: 0;
-            width: 24px; height: 2px; background: var(--accent);
+            width: 22px; height: 2.5px; background: var(--text-main); border-radius: 2px;
         }
         .burger-icon::before { top: -7px; }
         .burger-icon::after { top: 7px; }
 
-        /* Search Icon */
-        .search-icon svg { width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 2; }
-        
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--accent); }
+        .search-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--text-main); stroke-width: 2.5; stroke-linecap: round; }
 
-        /* 4. OVERLAYS (Menu & Search) */
+        /* LOGO */
+        .logo-wrapper {
+            display: flex; align-items: baseline; gap: 0; 
+            font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .logo-love { color: var(--love-pink); }
+        .logo-calc { color: var(--calc-blue); }
+        
+        .logo-u-svg {
+            width: 22px; height: 22px; display: block;
+            margin-left: 4px; margin-right: 2px;
+            transform: rotate(-15deg); transform-origin: bottom center;
+            position: relative; top: 2px;
+        }
+
+        /* 4. CONTENT STYLES */
+        .page-hero { 
+            padding: 3rem 0 2rem 0; 
+            text-align: center;
+            max-width: 600px; margin: 0 auto;
+        }
+        .page-hero h1 { 
+            font-size: 2rem; font-weight: 900; margin: 0 0 1rem 0; 
+            letter-spacing: -1px; color: var(--text-main);
+        }
+        .page-hero p { font-size: 1.1rem; color: var(--text-muted); margin: 0; }
+
+        /* Text Content Blocks */
+        .content-block { margin-bottom: 3rem; }
+        .content-block h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-main); }
+        .content-block p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem; }
+
+        /* FEATURE GRID (Why Us) */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: var(--surface); padding: 1.5rem;
+            border-radius: var(--radius-lg); border: 1px solid var(--border);
+            text-align: center;
+        }
+        .feature-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+        .feature-title { font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; display: block; }
+        .feature-text { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* 5. OVERLAYS & SEARCH */
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 100;
-            opacity: 0; visibility: hidden; transition: opacity 0.2s;
+            background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px);
+            z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.2s;
         }
         .overlay.active { opacity: 1; visibility: visible; }
 
-        /* Menu Drawer */
         .menu-drawer {
-            position: fixed; top: 0; left: 0; bottom: 0;
-            width: 280px; background: #fff; z-index: 101;
+            position: fixed; top: 0; left: 0; bottom: 0; width: 300px; 
+            background: var(--surface); z-index: 101; padding: 2rem;
             transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 2rem; border-right: 1px solid var(--border);
-            display: flex; flex-direction: column;
+            box-shadow: 10px 0 25px rgba(0,0,0,0.1);
         }
         .overlay.active .menu-drawer { transform: translateX(0); }
 
-        .drawer-header { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-        .close-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; }
-        
-        .nav-links a { 
-            display: block; padding: 12px 0; font-size: 1.1rem; 
-            font-weight: 600; border-bottom: 1px solid var(--border); 
-        }
+        .drawer-header { display: flex; justify-content: space-between; margin-bottom: 2rem; align-items: center; }
+        .close-btn { font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--text-muted); }
 
-        /* Search Bar Overlay */
+        .nav-links a { 
+            display: block; padding: 15px 0; font-size: 1.1rem; font-weight: 600; 
+            color: var(--text-main); border-bottom: 1px solid var(--border); 
+        }
+        .nav-links a:hover { color: var(--calc-blue); padding-left: 5px; }
+
         .search-bar-container {
-            position: fixed; top: 0; left: 0; width: 100%; 
-            background: #fff; z-index: 101; padding: 1.5rem;
-            transform: translateY(-100%); transition: transform 0.3s;
-            border-bottom: 1px solid var(--border);
-            display: flex; gap: 1rem; align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%; background: var(--surface); 
+            z-index: 101; padding: 1.5rem; transform: translateY(-100%); transition: transform 0.3s;
+            border-bottom: 1px solid var(--border); display: flex; gap: 1rem; align-items: center;
         }
         .overlay.active .search-bar-container { transform: translateY(0); }
-
         .search-input {
-            width: 100%; padding: 12px; font-size: 1.1rem; border: none;
-            border-bottom: 2px solid var(--accent); outline: none;
+            width: 100%; padding: 12px 0; font-size: 1.2rem; border: none; 
+            border-bottom: 2px solid var(--border); outline: none; color: var(--text-main);
         }
-        
-        /* Search Results Container */
-        .search-results-container {
-            max-width: 800px; margin: 0 auto; padding: 1rem 1.5rem; background: #fff;
-        }
-        .search-result-item {
-            display: block; padding: 15px 0; border-bottom: 1px solid #eee;
-            font-size: 1.1rem; font-weight: 600; color: #000;
-        }
-        .search-result-item:hover { background-color: #f9f9f9; padding-left: 10px; transition: all 0.2s; }
-        .no-results { padding: 20px 0; color: #666; }
-
-        /* 5. CONTENT STYLES */
-        h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -1px; }
-        h2 { font-size: 1.4rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; }
-        p { margin-bottom: 1.2rem; color: #333; font-size: 1.05rem; }
-        ul { margin-bottom: 1.5rem; padding-left: 1.2rem; }
-        li { margin-bottom: 0.5rem; color: #333; }
+        .search-input:focus { border-color: var(--calc-blue); }
+        .search-results-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; background: var(--surface); }
+        .search-result-item { display: block; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 1.1rem; font-weight: 600; }
+        .search-result-item:hover { color: var(--calc-blue); }
 
         /* 6. FOOTER */
-        footer { border-top: 1px solid var(--border); padding: 3rem 0; background: #f9f9f9; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 5rem; }
-        .footer-links { margin-bottom: 1.5rem; }
-        .footer-links a { margin: 0 12px; color: var(--text); font-weight: 500; }
+        footer { 
+            border-top: 1px solid var(--border); padding: 4rem 0; 
+            background: var(--surface); text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: auto; 
+        }
+        .footer-links a { margin: 0 15px; font-weight: 600; color: var(--text-main); }
+        .footer-links a:hover { color: var(--calc-blue); }
     </style>
 </head>
 <body>
@@ -131,8 +181,8 @@
     <div id="menuOverlay" class="overlay">
         <div class="menu-drawer">
             <div class="drawer-header">
-                <span style="font-weight:800; font-size:1.2rem;">Menu</span>
-                <button id="closeMenu" class="close-btn" aria-label="Close Menu">&times;</button>
+                <span style="font-weight:800; font-size:1.4rem;">Menu</span>
+                <button id="closeMenu" class="close-btn" aria-label="Close">&times;</button>
             </div>
             <nav class="nav-links">
                 <a href="/">Home</a>
@@ -147,8 +197,8 @@
 
     <div id="searchOverlay" class="overlay">
         <div class="search-bar-container">
-            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools (e.g. Asphalt, CGPA)..." autocomplete="off">
-            <button id="closeSearch" class="close-btn" aria-label="Close Search">&times;</button>
+            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools (e.g. 'Asphalt', 'CGPA')..." autocomplete="off">
+            <button id="closeSearch" class="close-btn" aria-label="Close">&times;</button>
         </div>
         <div id="searchResults" class="search-results-container"></div>
     </div>
@@ -156,10 +206,24 @@
     <header>
         <div class="container header-inner">
             <div class="header-left">
-                <button id="menuBtn" class="icon-btn" aria-label="Open Menu">
+                <button id="menuBtn" class="icon-btn" aria-label="Menu">
                     <div class="burger-icon"></div>
                 </button>
-                <a href="/" class="logo">LoveU Calc.</a>
+                
+                <a href="/" class="logo-wrapper">
+                    <span class="logo-love">Love</span>
+                    <svg class="logo-u-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="uGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#db2777" />
+                                <stop offset="100%" style="stop-color:#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 20 10 L 20 60 Q 20 90 50 90 Q 80 90 80 60 L 80 10" 
+                              stroke="url(#uGradient)" stroke-width="28" stroke-linecap="round" />
+                    </svg>
+                    <span class="logo-calc">Calc.</span>
+                </a>
             </div>
             
             <button id="searchBtn" class="icon-btn search-icon" aria-label="Search">
@@ -170,22 +234,39 @@
 
     <main class="container">
         
-        <h1>About LoveU Calc</h1>
-        <p style="color: #666; font-size: 1.1rem; margin-bottom: 2rem;">Fast. Private. Simple.</p>
+        <section class="page-hero">
+            <h1>About LoveU Calc.</h1>
+            <p>We build tools that are simple to use, instant to load, and respectful of your privacy.</p>
+        </section>
 
-        <p>LoveU Calc was built to solve a simple problem: most online calculator websites are slow, cluttered with ads, and difficult to use on mobile phones.</p>
-        
-        <p>We believe that when you need to calculate a grade, a mortgage payment, or a unit conversion, you shouldn't have to wait for 5MB of scripts to load. You want the answer, and you want it now.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <span class="feature-title">Lightning Fast</span>
+                <span class="feature-text">No bloated code or heavy images. Our tools load instantly on any connection.</span>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <span class="feature-title">Privacy First</span>
+                <span class="feature-text">Calculations happen on your device. Your data never leaves your browser.</span>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💎</span>
+                <span class="feature-title">100% Free</span>
+                <span class="feature-text">No paywalls, no sign-ups, and no intrusive pop-ups. Just pure utility.</span>
+            </div>
+        </div>
 
-        <h2>Our Core Principles</h2>
-        <ul>
-            <li><strong>Zero Bloat:</strong> Our pages are usually under 15KB. We use no heavy frameworks or tracking scripts.</li>
-            <li><strong>Privacy First:</strong> Calculations happen on your device (in your browser). We do not send your data to our servers.</li>
-            <li><strong>Mobile First:</strong> Every tool is designed for touchscreens first, ensuring large buttons and readable text on small screens.</li>
-        </ul>
+        <div class="content-block">
+            <h2>Our Mission</h2>
+            <p>In a web filled with slow, ad-heavy, and confusing websites, we wanted to build something different. <strong>LoveU Calc</strong> was born from a simple idea: Mathematics should be accessible, beautiful, and stress-free.</p>
+            <p>Whether you are a student calculating your CGPA, a homeowner estimating concrete for a driveway, or just curious about your exact age, we have built a tool specifically for you.</p>
+        </div>
 
-        <h2>Who is this for?</h2>
-        <p>LoveU Calc is for students, professionals, and homeowners who value efficiency. Whether you are calculating your CGPA for university applications or estimating concrete for a driveway, our tools are free to use forever.</p>
+        <div class="content-block" style="margin-bottom: 5rem;">
+            <h2>The "Love" in Calculation</h2>
+            <p>Why "LoveU"? Because we believe there is a bridge between the cold logic of numbers and the warmth of human needs. We design our tools with care (Love) so you can get the precise answers (Calc) you need without the headache.</p>
+        </div>
 
     </main>
 
