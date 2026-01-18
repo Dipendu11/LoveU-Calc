@@ -8,125 +8,191 @@
     <link rel="canonical" href="https://loveucalc.com/categories/construction-materials">
     
     <style>
-        /* 1. RESET & VARIABLES */
-        :root { --bg:#fff; --text:#111; --muted:#666; --border:#e5e5e5; --accent:#000; --highlight:#f4f4f4; }
+        /* 1. MODERN APP VARIABLES */
+        :root {
+            --bg-body: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            
+            --love-pink: #db2777;
+            --calc-blue: #2563eb;
+            --gradient-brand: linear-gradient(135deg, #db2777 0%, #2563eb 100%);
+            
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-float: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 2. RESET & BASE */
         * { box-sizing: border-box; }
         
-        /* 2. STICKY FOOTER LAYOUT */
         body { 
             margin: 0; 
-            font-family: system-ui, -apple-system, sans-serif; 
-            background: var(--bg); 
-            color: var(--text); 
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-body); 
+            color: var(--text-main); 
+            line-height: 1.6;
+            display: flex; flex-direction: column; min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        main { flex: 1; width: 100%; }
-        
-        a { text-decoration: none; color: inherit; }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* 3. HEADER & NAVIGATION STYLES */
+        main { flex: 1; width: 100%; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+        @media (max-width: 480px) { .container { padding: 0 1.25rem; } }
+
+        /* 3. HEADER */
         header { 
             padding: 1rem 0; 
-            border-bottom: 1px solid var(--border); 
-            margin-bottom: 2rem; 
-            background: #fff;
-            position: relative; z-index: 10;
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
-        
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
-        .header-left { display: flex; align-items: center; gap: 1rem; }
 
-        /* Hamburger Button */
+        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .header-left { display: flex; align-items: center; gap: 1.2rem; }
+
         .icon-btn {
-            background: none; border: none; cursor: pointer; padding: 5px;
+            background: transparent; border: none; cursor: pointer; padding: 8px;
             display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; width: 44px; height: 44px;
+            transition: var(--transition);
         }
-        .burger-icon {
-            width: 24px; height: 2px; background: var(--accent); position: relative;
-        }
+        .icon-btn:hover { background: rgba(0,0,0,0.04); }
+
+        .burger-icon { width: 22px; height: 2.5px; background: var(--text-main); position: relative; border-radius: 2px; }
         .burger-icon::before, .burger-icon::after {
             content: ''; position: absolute; left: 0;
-            width: 24px; height: 2px; background: var(--accent);
+            width: 22px; height: 2.5px; background: var(--text-main); border-radius: 2px;
         }
         .burger-icon::before { top: -7px; }
         .burger-icon::after { top: 7px; }
 
-        /* Search Icon */
-        .search-icon svg { width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 2; }
-        
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; color: var(--accent); }
+        .search-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--text-main); stroke-width: 2.5; stroke-linecap: round; }
 
-        /* 4. OVERLAYS (Menu & Search) */
+        /* LOGO */
+        .logo-wrapper {
+            display: flex; align-items: baseline; gap: 0; 
+            font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+        .logo-love { color: var(--love-pink); }
+        .logo-calc { color: var(--calc-blue); }
+        
+        .logo-u-svg {
+            width: 22px; height: 22px; display: block;
+            margin-left: 4px; margin-right: 2px;
+            transform: rotate(-15deg); transform-origin: bottom center;
+            position: relative; top: 2px;
+        }
+
+        /* 4. CONTENT STYLES */
+        .breadcrumbs { 
+            font-size: 0.9rem; color: var(--text-muted); 
+            margin-top: 1.5rem; margin-bottom: 1rem; font-weight: 500;
+        }
+        .breadcrumbs span { opacity: 0.5; margin: 0 5px; }
+        .breadcrumbs a:hover { color: var(--calc-blue); text-decoration: underline; }
+
+        .page-hero { 
+            padding: 1rem 0 2.5rem 0; 
+            margin-bottom: 2rem; 
+        }
+        
+        /* UPDATED: Slightly smaller heading */
+        .page-hero h1 { 
+            font-size: 1.9rem; /* Reduced from 2.2rem */
+            font-weight: 800; 
+            margin: 0; 
+            letter-spacing: -0.5px; 
+            color: var(--text-main);
+        }
+
+        /* 5. TOOL LIST (CARDS) */
+        /* UPDATED: Added margin-bottom to create gap before footer */
+        .tool-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+            margin-bottom: 5rem; /* The Gap Fix */
+        }
+        
+        .tool-card {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--surface); padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-md); border: 1px solid var(--border);
+            font-weight: 600; font-size: 1.1rem; color: var(--text-main);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--calc-blue);
+            color: var(--calc-blue);
+            box-shadow: var(--shadow-float);
+        }
+        
+        .arrow { 
+            color: var(--text-muted); font-weight: normal; 
+            transition: transform 0.2s;
+        }
+        .tool-card:hover .arrow { transform: translateX(5px); color: var(--calc-blue); }
+
+        /* 6. OVERLAYS & SEARCH */
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 100;
-            opacity: 0; visibility: hidden; transition: opacity 0.2s;
+            background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px);
+            z-index: 100; opacity: 0; visibility: hidden; transition: opacity 0.2s;
         }
         .overlay.active { opacity: 1; visibility: visible; }
 
-        /* Menu Drawer */
         .menu-drawer {
-            position: fixed; top: 0; left: 0; bottom: 0;
-            width: 280px; background: #fff; z-index: 101;
+            position: fixed; top: 0; left: 0; bottom: 0; width: 300px; 
+            background: var(--surface); z-index: 101; padding: 2rem;
             transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 2rem; border-right: 1px solid var(--border);
-            display: flex; flex-direction: column;
+            box-shadow: 10px 0 25px rgba(0,0,0,0.1);
         }
         .overlay.active .menu-drawer { transform: translateX(0); }
 
-        .drawer-header { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-        .close-btn { font-size: 1.5rem; background: none; border: none; cursor: pointer; }
-        
-        .nav-links a { 
-            display: block; padding: 12px 0; font-size: 1.1rem; 
-            font-weight: 600; border-bottom: 1px solid var(--border); 
-        }
+        .drawer-header { display: flex; justify-content: space-between; margin-bottom: 2rem; align-items: center; }
+        .close-btn { font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--text-muted); }
 
-        /* Search Bar Overlay */
+        .nav-links a { 
+            display: block; padding: 15px 0; font-size: 1.1rem; font-weight: 600; 
+            color: var(--text-main); border-bottom: 1px solid var(--border); 
+        }
+        .nav-links a:hover { color: var(--calc-blue); padding-left: 5px; }
+
         .search-bar-container {
-            position: fixed; top: 0; left: 0; width: 100%; 
-            background: #fff; z-index: 101; padding: 1.5rem;
-            transform: translateY(-100%); transition: transform 0.3s;
-            border-bottom: 1px solid var(--border);
-            display: flex; gap: 1rem; align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%; background: var(--surface); 
+            z-index: 101; padding: 1.5rem; transform: translateY(-100%); transition: transform 0.3s;
+            border-bottom: 1px solid var(--border); display: flex; gap: 1rem; align-items: center;
         }
         .overlay.active .search-bar-container { transform: translateY(0); }
-
         .search-input {
-            width: 100%; padding: 12px; font-size: 1.1rem; border: none;
-            border-bottom: 2px solid var(--accent); outline: none;
+            width: 100%; padding: 12px 0; font-size: 1.2rem; border: none; 
+            border-bottom: 2px solid var(--border); outline: none; color: var(--text-main);
         }
-        
-        /* Search Results Container */
-        .search-results-container {
-            max-width: 800px; margin: 0 auto; padding: 1rem 1.5rem; background: #fff;
+        .search-input:focus { border-color: var(--calc-blue); }
+        .search-results-container { max-width: 1000px; margin: 0 auto; padding: 1rem 1.5rem; background: var(--surface); }
+        .search-result-item { display: block; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 1.1rem; font-weight: 600; }
+        .search-result-item:hover { color: var(--calc-blue); }
+
+        /* 7. FOOTER */
+        footer { 
+            border-top: 1px solid var(--border); padding: 4rem 0; 
+            background: var(--surface); text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: auto; 
         }
-        .search-result-item {
-            display: block; padding: 15px 0; border-bottom: 1px solid #eee;
-            font-size: 1.1rem; font-weight: 600; color: #000;
-        }
-        .search-result-item:hover { background-color: #f9f9f9; padding-left: 10px; transition: all 0.2s; }
-        .no-results { padding: 20px 0; color: #666; }
-
-        /* 5. CONTENT STYLES */
-        .breadcrumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
-        .page-hero { padding: 1rem 0 2rem 0; border-bottom: 2px solid var(--accent); margin-bottom: 1rem; }
-        .page-hero h1 { font-size: 2rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
-
-        .tool-list { display: flex; flex-direction: column; }
-        .tool-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--border); font-weight: 600; font-size: 1.1rem; transition: background 0.1s; }
-        .tool-row:hover { padding-left: 10px; background-color: var(--highlight); }
-        .arrow { color: #999; font-weight: normal; }
-
-        /* 6. FOOTER */
-        footer { border-top: 1px solid var(--border); padding: 3rem 0; background: #f9f9f9; text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 5rem; }
-        .footer-links { margin-bottom: 1.5rem; }
-        .footer-links a { margin: 0 12px; color: var(--text); font-weight: 500; }
+        .footer-links a { margin: 0 15px; font-weight: 600; color: var(--text-main); }
+        .footer-links a:hover { color: var(--calc-blue); }
     </style>
 </head>
 <body>
@@ -134,8 +200,8 @@
     <div id="menuOverlay" class="overlay">
         <div class="menu-drawer">
             <div class="drawer-header">
-                <span style="font-weight:800; font-size:1.2rem;">Menu</span>
-                <button id="closeMenu" class="close-btn" aria-label="Close Menu">&times;</button>
+                <span style="font-weight:800; font-size:1.4rem;">Menu</span>
+                <button id="closeMenu" class="close-btn" aria-label="Close">&times;</button>
             </div>
             <nav class="nav-links">
                 <a href="/">Home</a>
@@ -150,8 +216,8 @@
 
     <div id="searchOverlay" class="overlay">
         <div class="search-bar-container">
-            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools (e.g. Asphalt, CGPA)..." autocomplete="off">
-            <button id="closeSearch" class="close-btn" aria-label="Close Search">&times;</button>
+            <input type="text" id="globalSearchInput" class="search-input" placeholder="Search tools (e.g. 'Asphalt', 'CGPA')..." autocomplete="off">
+            <button id="closeSearch" class="close-btn" aria-label="Close">&times;</button>
         </div>
         <div id="searchResults" class="search-results-container"></div>
     </div>
@@ -159,10 +225,24 @@
     <header>
         <div class="container header-inner">
             <div class="header-left">
-                <button id="menuBtn" class="icon-btn" aria-label="Open Menu">
+                <button id="menuBtn" class="icon-btn" aria-label="Menu">
                     <div class="burger-icon"></div>
                 </button>
-                <a href="/" class="logo">LoveU Calc.</a>
+                
+                <a href="/" class="logo-wrapper">
+                    <span class="logo-love">Love</span>
+                    <svg class="logo-u-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="uGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#db2777" />
+                                <stop offset="100%" style="stop-color:#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M 20 10 L 20 60 Q 20 90 50 90 Q 80 90 80 60 L 80 10" 
+                              stroke="url(#uGradient)" stroke-width="28" stroke-linecap="round" />
+                    </svg>
+                    <span class="logo-calc">Calc.</span>
+                </a>
             </div>
             
             <button id="searchBtn" class="icon-btn search-icon" aria-label="Search">
@@ -172,19 +252,34 @@
     </header>
 
     <main class="container">
-        <nav class="breadcrumbs"><a href="/">Home</a> <span>/</span> Construction</nav>
+        
+        <nav class="breadcrumbs">
+            <a href="/">Home</a> <span>/</span> Construction
+        </nav>
 
         <section class="page-hero">
             <h1>Construction & Materials</h1>
+            <p style="color:var(--text-muted); margin-top:0.5rem;">Calculate materials for your next project accurately.</p>
         </section>
 
         <div class="tool-list">
-            <a href="/asphalt-calculator" class="tool-row">Asphalt Calculator <span class="arrow">→</span></a>
-            <a href="/cubic-yard-calculator" class="tool-row">Cubic Yard Calculator <span class="arrow">→</span></a>
-            <a href="/gravel-calculator" class="tool-row">Gravel Calculator <span class="arrow">→</span></a>
-            <a href="/board-foot-calculator" class="tool-row">Board Foot Calculator <span class="arrow">→</span></a>
-            <a href="/topsoil-calculator" class="tool-row">Topsoil Calculator <span class="arrow">→</span></a>
+            <a href="/asphalt-calculator" class="tool-card">
+                Asphalt Calculator <span class="arrow">→</span>
+            </a>
+            <a href="/cubic-yard-calculator" class="tool-card">
+                Cubic Yard Calculator <span class="arrow">→</span>
+            </a>
+            <a href="/gravel-calculator" class="tool-card">
+                Gravel Calculator <span class="arrow">→</span>
+            </a>
+            <a href="/board-foot-calculator" class="tool-card">
+                Board Foot Calculator <span class="arrow">→</span>
+            </a>
+            <a href="/topsoil-calculator" class="tool-card">
+                Topsoil Calculator <span class="arrow">→</span>
+            </a>
         </div>
+
     </main>
 
     <footer id="footer">
