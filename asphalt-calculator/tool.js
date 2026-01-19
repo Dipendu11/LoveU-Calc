@@ -17,7 +17,7 @@ function toggleAdvanced() {
     }
 }
 
-// Handles ft, m, yd, in, cm
+// Convert any unit to FEET
 function getFeet(val, unit) {
     if(!val) return 0;
     switch(unit) {
@@ -73,9 +73,10 @@ function calculateAsphalt() {
     const includeBase = document.getElementById('subBaseCheck').checked;
     if(includeBase) {
         const baseDepthRaw = parseFloat(document.getElementById('baseDepth').value) || 0;
-        const baseDepthFt = baseDepthRaw / 12; // Base assumed inches
+        const baseDepthUnit = document.getElementById('baseDepthUnit').value;
+        const baseDepthFt = getFeet(baseDepthRaw, baseDepthUnit); // Fixed Unit Conversion
         const baseVol = areaSqFt * baseDepthFt;
-        const baseDensity = 110; 
+        const baseDensity = parseFloat(document.getElementById('baseDensity').value) || 110; 
         baseTons = (baseVol * baseDensity) / 2000;
         baseTons = baseTons * (1 + waste); 
     }
