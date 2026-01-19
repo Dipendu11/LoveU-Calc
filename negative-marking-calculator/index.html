@@ -128,22 +128,64 @@
         .btn-sec { background: #fff; border: 2px dashed var(--bl); color: var(--bl); padding: 12px; border-radius: var(--rad); font-weight: 700; cursor: pointer; width: 100%; margin-top: 1rem; }
         .btn-res { background: none; border: none; color: var(--mut); margin-top: 1rem; text-decoration: underline; cursor: pointer; }
 
-        /* Result Box */
-        .res-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--rad); padding: 2rem; margin-top: 2rem; text-align: center; display: none; }
+        /* --- UI FIX: Improved Result Box --- */
+        .res-box { 
+            background: #fff; 
+            border: 2px solid var(--bord); 
+            border-radius: var(--rad); 
+            padding: 2.5rem 2rem; 
+            margin-top: 2rem; 
+            text-align: center; 
+            display: none; 
+            box-shadow: var(--shad);
+        }
         .res-box.visible { display: block; animation: popIn 0.3s; }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 
-        .res-val { font-size: 3.5rem; font-weight: 900; line-height: 1; color: var(--bl); margin-bottom: 0.5rem; }
+        /* Main Score */
+        .score-wrap { margin-bottom: 2rem; }
+        .res-val { font-size: 4rem; font-weight: 800; line-height: 1; color: var(--bl); margin-bottom: 0.2rem; letter-spacing: -2px; }
         .res-lbl { font-size: 0.9rem; font-weight: 700; color: var(--mut); text-transform: uppercase; letter-spacing: 1px; }
         
-        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 2rem; text-align: center; }
-        .stat-item { background: #fff; padding: 10px; border-radius: 8px; border: 1px solid var(--bord); }
-        .stat-v { display: block; font-weight: 800; font-size: 1.2rem; color: var(--txt); }
-        .stat-l { font-size: 0.8rem; color: var(--mut); text-transform: uppercase; }
+        /* Stats Grid */
+        .stat-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; 
+            margin-bottom: 2rem; 
+        }
+        .stat-item { 
+            background: #f8fafc; 
+            padding: 15px 10px; 
+            border-radius: 12px; 
+            border: 1px solid #e2e8f0; 
+        }
+        .stat-v { display: block; font-weight: 800; font-size: 1.4rem; color: var(--txt); line-height: 1.2; }
+        .stat-l { font-size: 0.75rem; color: var(--mut); font-weight: 600; text-transform: uppercase; margin-top: 4px; display: block; }
 
-        .safe-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-top: 10px; }
-        .is-safe { background: #d1fae5; color: var(--grn); border: 1px solid #34d399; }
-        .is-risky { background: #fee2e2; color: var(--red); border: 1px solid #f87171; }
+        /* Verdict Badge */
+        .verdict-box {
+            background: #fff;
+            border-top: 1px dashed var(--bord);
+            padding-top: 1.5rem;
+        }
+        .safe-badge { 
+            display: inline-flex; 
+            align-items: center;
+            padding: 8px 16px; 
+            border-radius: 30px; 
+            font-size: 0.95rem; 
+            font-weight: 700; 
+            margin-bottom: 10px;
+        }
+        .is-safe { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        .is-risky { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+
+        @media (max-width: 500px) {
+            .res-val { font-size: 3rem; }
+            .stat-grid { gap: 10px; }
+            .stat-v { font-size: 1.1rem; }
+        }
 
         /* Strategy Table */
         .sim-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-top: 1rem; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid var(--bord); }
@@ -294,9 +336,11 @@
                 </form>
 
                 <div id="resultBox" class="res-box">
-                    <div class="res-lbl">Final Net Score</div>
-                    <div class="res-val" id="resNet">0.00</div>
-                    <div class="res-lbl">OUT OF <span id="resTotalMarks">0</span></div>
+                    <div class="score-wrap">
+                        <div class="res-lbl">Final Net Score</div>
+                        <div class="res-val" id="resNet">0.00</div>
+                        <div class="res-lbl">OUT OF <span id="resTotalMarks">0</span></div>
+                    </div>
 
                     <div class="stat-grid">
                         <div class="stat-item">
@@ -313,11 +357,13 @@
                         </div>
                     </div>
 
-                    <div id="breakEvenBadge" class="safe-badge"></div>
-                    <p style="font-size:0.9rem; color:var(--mut); margin-top:10px;">
-                        Break-Even Accuracy: <strong id="resBE">0%</strong><br>
-                        (You need > <span id="resBENum">0</span>% accuracy to profit from guessing)
-                    </p>
+                    <div class="verdict-box">
+                        <div id="breakEvenBadge" class="safe-badge"></div>
+                        <p style="font-size:0.9rem; color:var(--mut); margin:0;">
+                            Break-Even Accuracy: <strong id="resBE">0%</strong><br>
+                            (You need > <span id="resBENum">0</span>% accuracy to profit from guessing)
+                        </p>
+                    </div>
                 </div>
 
                 <div class="sig">Made with <span class="l-pk">Love</span> & <span class="l-bl">Logic</span>.</div>
