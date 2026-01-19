@@ -27,7 +27,8 @@
           "operatingSystem": "All",
           "description": "A professional calculator to estimate asphalt tonnage, sub-base gravel volume, labor costs, and total paving expenses.",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-          "featureList": "Asphalt Tonnage, Cost Estimation, Sub-Base Calculation, PDF Export"
+          "featureList": "Asphalt Tonnage, Cost Estimation, Sub-Base Calculation, PDF Export",
+          "author": { "@type": "Organization", "name": "LoveU Calc" }
         },
         {
           "@type": "BreadcrumbList",
@@ -41,10 +42,10 @@
           "@type": "HowTo",
           "name": "How to Calculate Asphalt Tonnage",
           "step": [
-            { "@type": "HowToStep", "name": "Measure Area", "text": "Measure the length and width of the driveway or parking lot." },
-            { "@type": "HowToStep", "name": "Select Thickness", "text": "Choose the depth of the asphalt layer (typically 2-3 inches)." },
-            { "@type": "HowToStep", "name": "Determine Density", "text": "Use the standard density of 145 lbs/ft³ or adjust based on your specific mix." },
-            { "@type": "HowToStep", "name": "Calculate", "text": "Multiply Volume x Density to get the total weight in tons." }
+            { "@type": "HowToStep", "name": "Measure Dimensions", "text": "Measure the length and width of the driveway or parking lot area." },
+            { "@type": "HowToStep", "name": "Determine Thickness", "text": "Select the depth of the asphalt layer (typically 2 inches for overlay, 3 inches for new driveways)." },
+            { "@type": "HowToStep", "name": "Select Density", "text": "Use the standard density of 145 lbs/ft³ or adjust based on your specific mix." },
+            { "@type": "HowToStep", "name": "Calculate Weight", "text": "Multiply Volume x Density to get the total weight in pounds, then divide by 2000 for tons." }
           ]
         },
         {
@@ -64,11 +65,6 @@
               "@type": "Question",
               "name": "How much does asphalt cost per ton?",
               "acceptedAnswer": { "@type": "Answer", "text": "Hot mix asphalt typically costs between $60 and $80 per ton for the material alone, excluding delivery and labor." }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I put new asphalt over old asphalt?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Yes, this is called an overlay. If the base is stable, you can apply a 1.5 to 2-inch layer of new asphalt over the old surface." }
             }
           ]
         }
@@ -305,12 +301,17 @@
                                 <label for="baseDepth">Gravel Depth</label>
                                 <div class="inp-grp">
                                     <input type="number" id="baseDepth" placeholder="e.g. 6" inputmode="decimal">
-                                    <select disabled><option>Inches</option></select>
+                                    <select id="baseDepthUnit">
+                                        <option value="in">Inches</option>
+                                        <option value="cm">CM</option>
+                                        <option value="ft">Feet</option>
+                                        <option value="m">Meters</option>
+                                    </select>
                                 </div>
                             </div>
                             <div>
-                                <label for="baseDensity">Base Density</label>
-                                <input type="number" id="baseDensity" value="110" disabled class="full-sel" style="background:#e2e8f0; color:#64748b;">
+                                <label for="baseDensity">Base Density (lbs/ft³)</label>
+                                <input type="number" id="baseDensity" value="110" class="full-sel">
                             </div>
                         </div>
                     </div>
