@@ -21,65 +21,11 @@
     <meta property="og:description" content="Plan your paving project with precision. Calculate asphalt tonnage, gravel base, labor rates, and waste margins instantly.">
     
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "name": "Asphalt Calculator",
-          "url": "https://loveucalc.com/asphalt-calculator/",
-          "applicationCategory": "BusinessApplication",
-          "operatingSystem": "All",
-          "description": "A precision tool to estimate asphalt tonnage, sub-base gravel, and project costs including labor and material breakdowns.",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-          "featureList": "Precision Tonnage, Sub-Base Calculator, Cost Breakdown, Waste Factor, Compaction Loss, PDF Export",
-          "author": { "@type": "Organization", "name": "LoveU Calc" }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://loveucalc.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Construction Calculators", "item": "https://loveucalc.com/categories/construction-materials" },
-            { "@type": "ListItem", "position": 3, "name": "Asphalt Calculator", "item": "https://loveucalc.com/asphalt-calculator/" }
-          ]
-        },
-        {
-          "@type": "HowTo",
-          "name": "How to Use the Asphalt Calculator",
-          "step": [
-            { "@type": "HowToStep", "name": "Enter Dimensions", "text": "Input the Length and Width of your area. The calculator supports mixed units (metric or imperial)." },
-            { "@type": "HowToStep", "name": "Select Thickness", "text": "Choose your asphalt depth. Recommended: 2 inches for resurfacing, 3 inches for new driveways." },
-            { "@type": "HowToStep", "name": "Set Waste Margin", "text": "Select a safety margin: 5% for rectangles, 10% for curves/irregular shapes." },
-            { "@type": "HowToStep", "name": "Include Sub-Base", "text": "Optional: Toggle 'Include Gravel Sub-Base' if paving over bare earth to calculate crushed stone needs." },
-            { "@type": "HowToStep", "name": "Advanced Costing", "text": "Click 'Show Advanced' to input local material prices and labor rates for a full budget estimate." },
-            { "@type": "HowToStep", "name": "Calculate & Export", "text": "Click Calculate to see results and use the Download PDF button to save your job sheet." }
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How much does a ton of asphalt cover?",
-              "acceptedAnswer": { "@type": "Answer", "text": "It varies depending on factors, but typically at 2 inches thick, 1 ton covers approx. 80 sq ft. At 3 inches thick, it covers approx. 54 sq ft." }
-            },
-            {
-              "@type": "Question",
-              "name": "What is the standard density for hot mix asphalt?",
-              "acceptedAnswer": { "@type": "Answer", "text": "We use the industry standard of 145 lbs per cubic foot (2322 kg/m³). You can adjust this in the Advanced settings if required." }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need a sub-base for my driveway?",
-              "acceptedAnswer": { "@type": "Answer", "text": "If you are paving a new driveway on soil, yes. You typically need 4-8 inches of crushed stone (gravel) compacted underneath to prevent sinking and cracking." }
-            }
-          ]
-        }
-      ]
-    }
+    {"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Asphalt Calculator","url":"https://loveucalc.com/asphalt-calculator/","applicationCategory":"BusinessApplication","operatingSystem":"All","description":"A precision tool to estimate asphalt tonnage, sub-base gravel, and project costs including labor and material breakdowns.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"Precision Tonnage, Sub-Base Calculator, Cost Breakdown, Waste Factor, Compaction Loss, PDF Export","author":{"@type":"Organization","name":"LoveU Calc"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://loveucalc.com/"},{"@type":"ListItem","position":2,"name":"Construction Calculators","item":"https://loveucalc.com/categories/construction-materials"},{"@type":"ListItem","position":3,"name":"Asphalt Calculator","item":"https://loveucalc.com/asphalt-calculator/"}]},{"@type":"HowTo","name":"How to Use the Asphalt Calculator","step":[{"@type":"HowToStep","name":"Enter Dimensions","text":"Input the Length and Width of your area. The calculator supports mixed units (metric or imperial)."},{"@type":"HowToStep","name":"Select Thickness","text":"Choose your asphalt depth. Recommended: 2 inches for resurfacing, 3 inches for new driveways."},{"@type":"HowToStep","name":"Set Waste Margin","text":"Select a safety margin: 5% for rectangles, 10% for curves/irregular shapes."},{"@type":"HowToStep","name":"Include Sub-Base","text":"Optional: Toggle 'Include Gravel Sub-Base' if paving over bare earth to calculate crushed stone needs."},{"@type":"HowToStep","name":"Advanced Costing","text":"Click 'Show Advanced' to input local material prices and labor rates for a full budget estimate."},{"@type":"HowToStep","name":"Calculate & Export","text":"Click Calculate to see results and use the Download PDF button to save your job sheet."}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does a ton of asphalt cover?","acceptedAnswer":{"@type":"Answer","text":"It varies depending on factors, but typically at 2 inches thick, 1 ton covers approx. 80 sq ft. At 3 inches thick, it covers approx. 54 sq ft."}},{"@type":"Question","name":"What is the standard density for hot mix asphalt?","acceptedAnswer":{"@type":"Answer","text":"We use the industry standard of 145 lbs per cubic foot (2322 kg/m³). You can adjust this in the Advanced settings if required."}},{"@type":"Question","name":"Do I need a sub-base for my driveway?","acceptedAnswer":{"@type":"Answer","text":"If you are paving a new driveway on soil, yes. You typically need 4-8 inches of crushed stone (gravel) compacted underneath to prevent sinking and cracking."}}]}]}
     </script>
 
     <style>
+        /* --- 1. GLOBAL VARIABLES --- */
         :root {
             --bg: #f8fafc; --surf: #ffffff;
             --txt: #0f172a; --mut: #475569; --bord: #cbd5e1;
@@ -98,7 +44,16 @@
         .limiter { max-width: 800px; width: 100%; margin: 0 auto; }
         @media (max-width: 480px) { .container { padding: 0 1.25rem; } }
         
-        header { padding: 1rem 0; position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        /* HEADER OPTIMIZED FOR SPEED (No Blur) */
+        header { 
+            padding: 1rem 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 50; 
+            background: #ffffff; /* Solid white allows fastest rendering */
+            border-bottom: 1px solid #e2e8f0; 
+        }
+        
         .head-in { display: flex; justify-content: space-between; align-items: center; }
         .head-l { display: flex; align-items: center; gap: 1.2rem; }
         .icon-btn { background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
