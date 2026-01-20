@@ -128,7 +128,7 @@
         .btn-sec { background: #fff; border: 2px dashed var(--bl); color: var(--bl); padding: 12px; border-radius: var(--rad); font-weight: 700; cursor: pointer; width: 100%; margin-top: 1rem; }
         .btn-res { background: none; border: none; color: var(--mut); margin-top: 1rem; text-decoration: underline; cursor: pointer; }
 
-        /* --- UI FIX: Improved Result Box --- */
+        /* --- UI FIX: Fully Responsive Result Box --- */
         .res-box { 
             background: #fff; 
             border: 2px solid var(--bord); 
@@ -142,15 +142,24 @@
         .res-box.visible { display: block; animation: popIn 0.3s; }
         @keyframes popIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 
-        /* Main Score */
+        /* Score Typography */
         .score-wrap { margin-bottom: 2rem; }
-        .res-val { font-size: 4rem; font-weight: 800; line-height: 1; color: var(--bl); margin-bottom: 0.2rem; letter-spacing: -2px; }
+        /* Clamped font: scales smoothly between 3rem and 4.5rem */
+        .res-val { 
+            font-size: clamp(3rem, 10vw, 4.5rem); 
+            font-weight: 800; 
+            line-height: 1; 
+            color: var(--bl); 
+            margin-bottom: 0.2rem; 
+            letter-spacing: -2px; 
+        }
         .res-lbl { font-size: 0.9rem; font-weight: 700; color: var(--mut); text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Stats Grid */
+        /* Responsive Grid: Stacks on mobile, Grid on desktop */
         .stat-grid { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
+            /* Auto-fit columns: Minimum 120px wide, or expand to fill */
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
             gap: 15px; 
             margin-bottom: 2rem; 
         }
@@ -163,7 +172,7 @@
         .stat-v { display: block; font-weight: 800; font-size: 1.4rem; color: var(--txt); line-height: 1.2; }
         .stat-l { font-size: 0.75rem; color: var(--mut); font-weight: 600; text-transform: uppercase; margin-top: 4px; display: block; }
 
-        /* Verdict Badge */
+        /* Verdict Box */
         .verdict-box {
             background: #fff;
             border-top: 1px dashed var(--bord);
@@ -181,10 +190,10 @@
         .is-safe { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
         .is-risky { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
 
-        @media (max-width: 500px) {
-            .res-val { font-size: 3rem; }
-            .stat-grid { gap: 10px; }
-            .stat-v { font-size: 1.1rem; }
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .res-box { padding: 1.5rem 1rem; }
+            .stat-v { font-size: 1.2rem; }
         }
 
         /* Strategy Table */
